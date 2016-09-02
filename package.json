@@ -55,7 +55,8 @@
     "request": "^2.74.0",
     "shmock": "^0.8.1",
     "slurry-core": "^1.1.0",
-    "slurry-spreader": "^1.1.1"
+    "slurry-spreader": "^1.1.1",
+    "xml2js": "^0.4.17"
   },
   "peerDependencies": {},
   "engines": {

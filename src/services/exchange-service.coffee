@@ -1,23 +1,30 @@
 _ = require 'lodash'
-request = require 'request'
 {challengeHeader, responseHeader} = require 'ntlm'
+request = require 'request'
+xml2js = require 'xml2js'
 
-EXCHANGE_PATH = '/EWS/Exchange.asmx'
+getUserSettingsRequest = require './getUserSettingsRequest'
+
+# EWS_PATH = '/EWS/Exchange.asmx'
+AUTODISCOVER_PATH = '/autodiscover/autodiscover.svc'
 
 class Exchange
   constructor: ({url, @username, @password}) ->
     throw new Error 'Missing required parameter: url' unless url?
     throw new Error 'Missing required parameter: username' unless @username?
     throw new Error 'Missing required parameter: password' unless @password?
-    @url = "#{url}#{EXCHANGE_PATH}"
+    @url = "#{url}#{AUTODISCOVER_PATH}"
 
   whoami: (callback) =>
-    @getRequest (error, authenticatedRequest) =>
+    @_getRequest (error, authenticatedRequest) =>
       return callback error if error?
 
-      authenticatedRequest.post {}, callback
+      authenticatedRequest.post {body: getUserSettingsRequest({@username})}, (error, response, body) =>
+        return callback error if error?
 
-  getRequest: (callback) =>
+        @_parseUserSettingsResponse body, callback
+
+  _getRequest: (callback) =>
     options = {
       url: @url
       forever: true
@@ -27,7 +34,8 @@ class Exchange
 
     request.post options, (error, response) =>
       return callback error if error?
-      console.log response.statusCode, response.headers, response.body
+      unless response.statusCode == 401
+        return callback new Error("Expected status: 401, received #{response.statusCode}")
 
       headers = {
         'Authorization': responseHeader(response, @url, '', @username, @password)
@@ -35,5 +43,24 @@ class Exchange
       }
 
       callback null, request.defaults(_.defaults({ headers }, options))
+
+  _parseUserSettingsResponse: (xml, callback) =>
+    @_xml2js xml, (error, obj) =>
+      return callback error if error?
+
+      UserResponse = _.get obj, 'Envelope.Body.GetUserSettingsResponseMessage.Response.UserResponses.UserResponse'
+      UserSettings = _.get UserResponse, 'UserSettings.UserSetting'
+
+      name = _.find(UserSettings, Name: 'UserDisplayName').Value
+      id   = _.find(UserSettings, Name: 'UserDeploymentId').Value
+
+      return callback null, { name, id }
+
+  _xml2js: (xml, callback) =>
+    options = {
+      tagNameProcessors: [xml2js.processors.stripPrefix]
+      explicitArray: false
+    }
+    xml2js.parseString xml, options, callback
 
 module.exports = Exchange
