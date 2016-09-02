@@ -48,6 +48,7 @@ class Command
       serviceUrl:      process.env.SLURRY_EXCHANGE_SERVICE_URL
       userDeviceManagerUrl: process.env.SLURRY_EXCHANGE_MANAGER_URL
       staticSchemasPath: process.env.SLURRY_EXCHANGE_STATIC_SCHEMAS_PATH
+      skipRedirectAfterApiAuth: true
     }
 
   run: =>

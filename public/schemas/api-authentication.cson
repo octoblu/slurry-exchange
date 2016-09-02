@@ -1,7 +1,7 @@
 type: "object"
 properties:
-  url:
-    title: "Exchange Server URL"
+  hostname:
+    title: "Exchange Hostname"
     type: "string"
     minLength: 1
   domain:

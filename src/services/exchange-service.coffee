@@ -1,6 +1,7 @@
 _ = require 'lodash'
 {challengeHeader, responseHeader} = require 'ntlm'
 request = require 'request'
+url = require 'url'
 xml2js = require 'xml2js'
 
 getUserSettingsRequest = require './getUserSettingsRequest'
@@ -9,11 +10,15 @@ getUserSettingsRequest = require './getUserSettingsRequest'
 AUTODISCOVER_PATH = '/autodiscover/autodiscover.svc'
 
 class Exchange
-  constructor: ({url, @username, @password}) ->
-    throw new Error 'Missing required parameter: url' unless url?
+  constructor: ({protocol, hostname, port, @username, @password}) ->
+    throw new Error 'Missing required parameter: hostname' unless hostname?
     throw new Error 'Missing required parameter: username' unless @username?
     throw new Error 'Missing required parameter: password' unless @password?
-    @url = "#{url}#{AUTODISCOVER_PATH}"
+
+    protocol ?= 'https'
+    port ?= 443
+
+    @url = url.format {protocol, hostname, port, pathname: AUTODISCOVER_PATH}
 
   whoami: (callback) =>
     @_getRequest (error, authenticatedRequest) =>

@@ -24,9 +24,9 @@ class ExchangeStrategy extends PassportStrategy
 
   authenticate: (req) -> # keep this skinny
     {bearerToken} = req.meshbluAuth
-    {url, domain, username, password} = req.body
+    {hostname, domain, username, password} = req.body
     return @redirect @authorizationUrl({bearerToken}) unless password?
-    @getUserFromExchange {url, domain, username, password}, (error, user) =>
+    @getUserFromExchange {hostname, domain, username, password}, (error, user) =>
       return @fail 401 if error? && error.code < 500
       return @error error if error?
       return @fail 404 unless user?
@@ -52,8 +52,8 @@ class ExchangeStrategy extends PassportStrategy
   formSchemaUrl: ->
     @_formSchemaUrl
 
-  getUserFromExchange: ({url, domain, username, password}, callback) =>
-    exchange = new Exchange({ url, domain, username, password })
+  getUserFromExchange: ({hostname, domain, username, password}, callback) =>
+    exchange = new Exchange({ hostname, domain, username, password })
     exchange.whoami callback
 
   postUrl: ->

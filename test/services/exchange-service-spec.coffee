@@ -17,7 +17,7 @@ describe 'Exchange', ->
     @server = shmock()
     enableDestroy @server
     {port} = @server.address()
-    @sut = new Exchange url: "http://localhost:#{port}", username: 'foo', password: 'bar'
+    @sut = new Exchange protocol: 'http', hostname: "localhost", port: port, username: 'foo', password: 'bar'
 
   afterEach (done) ->
     @server.destroy done

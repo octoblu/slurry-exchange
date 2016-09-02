@@ -1,9 +1,9 @@
 [
   {
-    key: "url"
+    key: "hostname"
   }
   {
-    description: 'The URL where Exchange resides. (ex: https://mail.citrix.com)'
+    description: 'The Hostname where Exchange resides. (ex: mail.citrix.com)'
     type: 'help'
   }
 
