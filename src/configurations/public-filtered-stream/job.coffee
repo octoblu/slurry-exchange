@@ -1,6 +1,6 @@
 http    = require 'http'
 _       = require 'lodash'
-Twitter = require 'twitter'
+# Twitter = require 'twitter'
 MeshbluHttp = require 'meshblu-http'
 MeshbluConfig = require 'meshblu-config'
 

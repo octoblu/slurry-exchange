@@ -1,0 +1,24 @@
+[
+  {
+    key: "url"
+  }
+  {
+    description: 'The URL where Exchange resides. (ex: https://mail.citrix.com)'
+    type: 'help'
+  }
+
+  {
+    key: "domain"
+  }
+  {
+    description: "Will attempt to auto-detect if left blank"
+    type: 'help'
+  }
+  {
+    key: "username"
+  }
+  {
+    key: "password"
+    type: "password"
+  }
+]
