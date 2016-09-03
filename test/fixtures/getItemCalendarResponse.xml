@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Header>
+    <h:ServerVersionInfo MajorVersion="15" MinorVersion="0" MajorBuildNumber="1210" MinorBuildNumber="2" Version="V2_23" xmlns:h="http://schemas.microsoft.com/exchange/services/2006/types" xmlns="http://schemas.microsoft.com/exchange/services/2006/types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+  </s:Header>
+  <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <m:GetItemResponse xmlns:m="http://schemas.microsoft.com/exchange/services/2006/messages" xmlns:t="http://schemas.microsoft.com/exchange/services/2006/types">
+      <m:ResponseMessages>
+        <m:GetItemResponseMessage ResponseClass="Success">
+          <m:ResponseCode>NoError</m:ResponseCode>
+          <m:Items>
+            <t:MeetingRequest>
+              <t:ItemId Id="AAMkADYxNGJmNGNmLTIxYTctNDlkOC1hZWRmLTJjMTMzZmI5YmUxNABGAAAAAAACtVr7DjkQQ4cFx7dwBexwBwD9KrxseohjTIFhVu2R9k27AAAAAAEKAAD9KrxseohjTIFhVu2R9k27AAAS/1nWAAA=" ChangeKey="CwAAABYAAAD9KrxseohjTIFhVu2R9k27AAAS/Yc8"/>
+              <t:ParentFolderId Id="AQMkADYxNGJmNGNmLTIxYTctNDlkOC1hZWRmLTJjMTMzAGZiOWJlMTQALgAAAwK1WvsOORBDhwXHt3AF7HABAP0qvGx6iGNMgWFW7ZH2TbsAAAIBCgAAAA==" ChangeKey="AQAAAA=="/>
+              <t:ItemClass>IPM.Schedule.Meeting.Request</t:ItemClass>
+              <t:Subject>1 vs 1</t:Subject>
+              <t:Sensitivity>Normal</t:Sensitivity>
+              <t:Body BodyType="HTML" IsTruncated="false">&lt;html&gt;&#xD;&lt;head&gt;&#xD;&lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8"&gt;&#xD;&lt;style type="text/css" style="display:none"&gt;&lt;!-- p { margin-top: 0px; margin-bottom: 0px; } .rps_9f7f p { margin-top: 0px; margin-bottom: 0px; } .rps_9f7f .rps_9f7f p.MsoNormal, .rps_9f7f .rps_9f7f li.MsoNormal, .rps_9f7f .rps_9f7f div.MsoNormal { margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif; } .rps_9f7f .rps_9f7f span.MsoHyperlink { color: rgb(5, 99, 193); text-decoration: underline; } .rps_9f7f .rps_9f7f span.MsoHyperlinkFollowed { color: rgb(149, 79, 114); text-decoration: underline; } .rps_9f7f .rps_9f7f p.msonormal0, .rps_9f7f .rps_9f7f li.msonormal0, .rps_9f7f .rps_9f7f div.msonormal0 { margin-right: 0in; margin-left: 0in; font-size: 12pt; font-family: "Times New Roman", serif; } .rps_9f7f .rps_9f7f span.EmailStyle18 { font-family: Calibri, sans-serif; color: windowtext; } .rps_9f7f .rps_9f7f .MsoChpDefault { font-size: 10pt; font-family: Calibri, sans-serif; }--&gt;&lt;/style&gt;&#xD;&lt;/head&gt;&#xD;&lt;body dir="ltr" style="font-size:12pt;color:#000000;background-color:#FFFFFF;font-family:Calibri,Arial,Helvetica,sans-serif;"&gt;&#xD;&lt;p&gt;&lt;br&gt;&#xD;&lt;/p&gt;&#xD;&lt;div class="rps_9f7f"&gt;&lt;style type="text/css"&gt;&lt;!-- .rps_9f7f p&#xD;{ margin-top: 0px; margin-bottom: 0px; }&#xD;.rps_9f7f .rps_9f7f p.MsoNormal, .rps_9f7f .rps_9f7f li.MsoNormal, .rps_9f7f .rps_9f7f div.MsoNormal&#xD;{ margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri,sans-serif; }&#xD;.rps_9f7f .rps_9f7f span.MsoHyperlink&#xD;{ color: rgb(5,99,193); text-decoration: underline; }&#xD;.rps_9f7f .rps_9f7f span.MsoHyperlinkFollowed&#xD;{ color: rgb(149,79,114); text-decoration: underline; }&#xD;.rps_9f7f .rps_9f7f p.msonormal0, .rps_9f7f .rps_9f7f li.msonormal0, .rps_9f7f .rps_9f7f div.msonormal0&#xD;{ margin-right: 0in; margin-left: 0in; font-size: 12pt; font-family: "Times New Roman",serif; }&#xD;.rps_9f7f .rps_9f7f span.EmailStyle18&#xD;{ font-family: Calibri,sans-serif; color: windowtext; }&#xD;.rps_9f7f .rps_9f7f .MsoChpDefault&#xD;{ font-size: 10pt; font-family: Calibri,sans-serif; }&#xD; --&gt;&lt;/style&gt;&#xD;&lt;div dir="ltr" style="font-size:12pt; color:#000000; background-color:#FFFFFF; font-family:Calibri,Arial,Helvetica,sans-serif"&gt;&#xD;&lt;p&gt;&lt;br&gt;&#xD;&lt;/p&gt;&#xD;&lt;div class="rps_9f7f"&gt;&lt;style type="text/css"&gt;&lt;!-- .rps_9f7f p&#xD;{ margin-top: 0px; margin-bottom: 0px; }&#xD;.rps_9f7f .rps_9f7f p.MsoNormal, .rps_9f7f .rps_9f7f li.MsoNormal, .rps_9f7f .rps_9f7f div.MsoNormal&#xD;{ margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: Calibri,sans-serif; }&#xD;.rps_9f7f .rps_9f7f span.MsoHyperlink&#xD;{ color: rgb(5,99,193); text-decoration: underline; }&#xD;.rps_9f7f .rps_9f7f span.MsoHyperlinkFollowed&#xD;{ color: rgb(149,79,114); text-decoration: underline; }&#xD;.rps_9f7f .rps_9f7f p.msonormal0, .rps_9f7f .rps_9f7f li.msonormal0, .rps_9f7f .rps_9f7f div.msonormal0&#xD;{ margin-right: 0in; margin-left: 0in; font-size: 12pt; font-family: "Times New Roman",serif; }&#xD;.rps_9f7f .rps_9f7f span.EmailStyle18&#xD;{ font-family: Calibri,sans-serif; color: windowtext; }&#xD;.rps_9f7f .rps_9f7f .MsoChpDefault&#xD;{ font-size: 10pt; font-family: Calibri,sans-serif; }&#xD;.rps_9f7f .rps_9f7f p.MsoNormal, .rps_9f7f .rps_9f7f li.MsoNormal, .rps_9f7f .rps_9f7f div.MsoNormal&#xD;{ margin: 0in; margin-bottom: .0001pt; font-size: 11.0pt; font-family: "Calibri",sans-serif; }&#xD;.rps_9f7f .rps_9f7f span.MsoHyperlink&#xD;{ color: #0563C1; text-decoration: underline; }&#xD;.rps_9f7f .rps_9f7f span.MsoHyperlinkFollowed&#xD;{ color: #954F72; text-decoration: underline; }&#xD;.rps_9f7f .rps_9f7f p.msonormal0, .rps_9f7f .rps_9f7f li.msonormal0, .rps_9f7f .rps_9f7f div.msonormal0&#xD;{ margin-right: 0in; margin-left: 0in; font-size: 12.0pt; font-family: "Times New Roman",serif; }&#xD;.rps_9f7f .rps_9f7f span.EmailStyle18&#xD;{ font-family: "Calibri",sans-serif; color: windowtext; }&#xD;.rps_9f7f .rps_9f7f .MsoChpDefault&#xD;{ font-size: 10.0pt; font-family: "Calibri",sans-serif; }&#xD; --&gt;&lt;/style&gt;&#xD;&lt;div lang="EN-US" style=""&gt;&#xD;&lt;div class="WordSection1"&gt;&#xD;&lt;p class="MsoNormal"&gt;Battle of Many Ages! And Eons! Afffnd Days! And seconds! And picoSeconds! gggsdfsdgjhjhjnjnjmmasdfasdf&lt;br&gt;&#xD;&lt;/p&gt;&#xD;&lt;/div&gt;&#xD;&lt;/div&gt;&#xD;&lt;/div&gt;&#xD;&lt;/div&gt;&#xD;&lt;/div&gt;&#xD;&lt;/body&gt;&#xD;&lt;/html&gt;&#xD;</t:Body>
+              <t:DateTimeReceived>2016-09-03T00:59:59Z</t:DateTimeReceived>
+              <t:Size>11362</t:Size>
+              <t:Importance>Normal</t:Importance>
+              <t:IsSubmitted>false</t:IsSubmitted>
+              <t:IsDraft>false</t:IsDraft>
+              <t:IsFromMe>false</t:IsFromMe>
+              <t:IsResend>false</t:IsResend>
+              <t:IsUnmodified>true</t:IsUnmodified>
+              <t:InternetMessageHeaders>
+                <t:InternetMessageHeader HeaderName="Received">from SJCPEX02CL03.citrite.net (10.160.37.13) by SJCPEX02CL01.citrite.net (10.160.37.11) with Microsoft SMTP Server (TLS) id 15.0.1210.3 via Mailbox Transport; Fri, 2 Sep 2016 17:59:59 -0700</t:InternetMessageHeader>
+                <t:InternetMessageHeader HeaderName="Received">from SJCPEX02CL03.citrite.net (10.160.37.13) by SJCPEX02CL03.citrite.net (10.160.37.13) with Microsoft SMTP Server (TLS) id 15.0.1130.7; Fri, 2 Sep 2016 17:59:59 -0700</t:InternetMessageHeader>
+                <t:InternetMessageHeader HeaderName="Received">from SJCPEX02CL03.citrite.net ([10.160.36.23]) by SJCPEX02CL03.citrite.net ([10.160.36.23]) with mapi id 15.00.1130.005; Fri, 2 Sep 2016 17:59:59 -0700</t:InternetMessageHeader>
+                <t:InternetMessageHeader HeaderName="Content-Type">application/ms-tnef</t:InternetMessageHeader>
+                <t:InternetMessageHeader HeaderName="Content-Transfer-Encoding">binary</t:InternetMessageHeader>
+                <t:InternetMessageHeader HeaderName="Subject">1 vs 1</t:InternetMessageHeader>
+                <t:InternetMessageHeader HeaderName="Thread-Topic">1 vs 1</t:InternetMessageHeader>
+                <t:InternetMessageHeader HeaderName="Thread-Index">AdIElXeE+xce251qQsm5uoLY9rihBgAGrVnw</t:InternetMessageHeader>
+                <t:InternetMessageHeader HeaderName="X-MS-Exchange-Calendar-Originator-Id">0a3cd424-fc0f-427f-94cc-747b5e883f23;/o=Citrix Systems/ou=Exchange Administrative Group (FYDIBOHF23SPDLT)/cn=Recipients/cn=Roy van de Watere3e</t:InternetMessageHeader>
+                <t:InternetMessageHeader HeaderName="Date">Fri, 2 Sep 2016 17:59:59 -0700</t:InternetMessageHeader>
+                <t:InternetMessageHeader HeaderName="Message-ID">&lt;6182a2f13484475996fe1a4e94db92f3@SJCPEX02CL03.citrite.net&gt;</t:InternetMessageHeader>
+                <t:InternetMessageHeader HeaderName="Accept-Language">en-US</t:InternetMessageHeader>
+                <t:InternetMessageHeader HeaderName="Content-Language">en-US</t:InternetMessageHeader>
+                <t:InternetMessageHeader HeaderName="X-MS-Exchange-Organization-SCL">-1</t:InternetMessageHeader>
+                <t:InternetMessageHeader HeaderName="X-MS-TNEF-Correlator">&lt;6182a2f13484475996fe1a4e94db92f3@SJCPEX02CL03.citrite.net&gt;</t:InternetMessageHeader>
+                <t:InternetMessageHeader HeaderName="MIME-Version">1.0</t:InternetMessageHeader>
+                <t:InternetMessageHeader HeaderName="X-MS-Exchange-Transport-FromEntityHeader">Hosted</t:InternetMessageHeader>
+                <t:InternetMessageHeader HeaderName="X-MS-Exchange-Organization-MessageDirectionality">Originating</t:InternetMessageHeader>
+                <t:InternetMessageHeader HeaderName="X-MS-Exchange-Organization-AuthSource">SJCPEX02CL03.citrite.net</t:InternetMessageHeader>
+                <t:InternetMessageHeader HeaderName="X-MS-Exchange-Organization-AuthAs">Internal</t:InternetMessageHeader>
+                <t:InternetMessageHeader HeaderName="X-MS-Exchange-Organization-AuthMechanism">04</t:InternetMessageHeader>
+                <t:InternetMessageHeader HeaderName="X-Originating-IP">[10.9.154.239]</t:InternetMessageHeader>
+                <t:InternetMessageHeader HeaderName="X-MS-Exchange-Organization-Network-Message-Id">901d159c-7405-4138-e2ec-08d3d395a123</t:InternetMessageHeader>
+                <t:InternetMessageHeader HeaderName="Return-Path">Roy.vandeWater@citrix.com</t:InternetMessageHeader>
+                <t:InternetMessageHeader HeaderName="X-MS-Exchange-Organization-AVStamp-Enterprise">1.0</t:InternetMessageHeader>
+                <t:InternetMessageHeader HeaderName="X-MS-Exchange-Organization-Recipient-P2-Type">Bcc</t:InternetMessageHeader>
+              </t:InternetMessageHeaders>
+              <t:DateTimeSent>2016-09-03T00:59:59Z</t:DateTimeSent>
+              <t:DateTimeCreated>2016-09-03T00:59:59Z</t:DateTimeCreated>
+              <t:ResponseObjects>
+                <t:AcceptItem/>
+                <t:TentativelyAcceptItem/>
+                <t:DeclineItem/>
+                <t:ReplyToItem/>
+                <t:ReplyAllToItem/>
+                <t:ForwardItem/>
+              </t:ResponseObjects>
+              <t:ReminderDueBy>2016-09-03T02:30:00Z</t:ReminderDueBy>
+              <t:ReminderIsSet>false</t:ReminderIsSet>
+              <t:ReminderNextTime>2016-09-02T02:15:00Z</t:ReminderNextTime>
+              <t:ReminderMinutesBeforeStart>15</t:ReminderMinutesBeforeStart>
+              <t:DisplayCc/>
+              <t:DisplayTo>Aaron Herres</t:DisplayTo>
+              <t:HasAttachments>false</t:HasAttachments>
+              <t:Culture>en-US</t:Culture>
+              <t:EffectiveRights>
+                <t:CreateAssociated>false</t:CreateAssociated>
+                <t:CreateContents>false</t:CreateContents>
+                <t:CreateHierarchy>false</t:CreateHierarchy>
+                <t:Delete>true</t:Delete>
+                <t:Modify>true</t:Modify>
+                <t:Read>true</t:Read>
+                <t:ViewPrivateItems>true</t:ViewPrivateItems>
+              </t:EffectiveRights>
+              <t:LastModifiedName>Conf. Octoblu (Tempe)</t:LastModifiedName>
+              <t:LastModifiedTime>2016-09-03T01:00:00Z</t:LastModifiedTime>
+              <t:IsAssociated>false</t:IsAssociated>
+              <t:WebClientReadFormQueryString>?ItemID=AAMkADYxNGJmNGNmLTIxYTctNDlkOC1hZWRmLTJjMTMzZmI5YmUxNABGAAAAAAACtVr7DjkQQ4cFx7dwBexwBwD9KrxseohjTIFhVu2R9k27AAAAAAEKAAD9KrxseohjTIFhVu2R9k27AAAS%2F1nWAAA%3D&amp;exvsurl=1&amp;viewmodel=ReadMessageItem</t:WebClientReadFormQueryString>
+              <t:ConversationId Id="AAQkADYxNGJmNGNmLTIxYTctNDlkOC1hZWRmLTJjMTMzZmI5YmUxNAAQAPsXHtudakLJubqC2Pa4oQY="/>
+              <t:Flag>
+                <t:FlagStatus>NotFlagged</t:FlagStatus>
+              </t:Flag>
+              <t:InstanceKey>AQAAAAAAAQoBAAAAEv9Z1gAAAAA=</t:InstanceKey>
+              <t:EntityExtractionResult/>
+              <t:Sender>
+                <t:Mailbox>
+                  <t:Name>Roy van de Water</t:Name>
+                  <t:EmailAddress>Roy.vandeWater@citrix.com</t:EmailAddress>
+                  <t:RoutingType>SMTP</t:RoutingType>
+                  <t:MailboxType>Mailbox</t:MailboxType>
+                </t:Mailbox>
+              </t:Sender>
+              <t:ToRecipients>
+                <t:Mailbox>
+                  <t:Name>Aaron Herres</t:Name>
+                  <t:EmailAddress>Aaron.Herres@citrix.com</t:EmailAddress>
+                  <t:RoutingType>SMTP</t:RoutingType>
+                  <t:MailboxType>Mailbox</t:MailboxType>
+                </t:Mailbox>
+              </t:ToRecipients>
+              <t:IsReadReceiptRequested>false</t:IsReadReceiptRequested>
+              <t:ConversationIndex>AdIElXeE+xce251qQsm5uoLY9rihBgAABAeQ</t:ConversationIndex>
+              <t:ConversationTopic>1 vs 1</t:ConversationTopic>
+              <t:From>
+                <t:Mailbox>
+                  <t:Name>Roy van de Water</t:Name>
+                  <t:EmailAddress>Roy.vandeWater@citrix.com</t:EmailAddress>
+                  <t:RoutingType>SMTP</t:RoutingType>
+                  <t:MailboxType>Mailbox</t:MailboxType>
+                </t:Mailbox>
+              </t:From>
+              <t:InternetMessageId>&lt;6182a2f13484475996fe1a4e94db92f3@SJCPEX02CL03.citrite.net&gt;</t:InternetMessageId>
+              <t:IsRead>false</t:IsRead>
+              <t:IsResponseRequested>true</t:IsResponseRequested>
+              <t:ReceivedBy>
+                <t:Mailbox>
+                  <t:Name>Conf. Octoblu (Tempe)</t:Name>
+                  <t:EmailAddress>octobluconf@citrix.com</t:EmailAddress>
+                  <t:RoutingType>SMTP</t:RoutingType>
+                  <t:MailboxType>Mailbox</t:MailboxType>
+                </t:Mailbox>
+              </t:ReceivedBy>
+              <t:ReceivedRepresenting>
+                <t:Mailbox>
+                  <t:Name>Conf. Octoblu (Tempe)</t:Name>
+                  <t:EmailAddress>octobluconf@citrix.com</t:EmailAddress>
+                  <t:RoutingType>SMTP</t:RoutingType>
+                  <t:MailboxType>Mailbox</t:MailboxType>
+                </t:Mailbox>
+              </t:ReceivedRepresenting>
+              <t:AssociatedCalendarItemId Id="AAMkADYxNGJmNGNmLTIxYTctNDlkOC1hZWRmLTJjMTMzZmI5YmUxNABGAAAAAAACtVr7DjkQQ4cFx7dwBexwBwD9KrxseohjTIFhVu2R9k27AAAAAAENAAD9KrxseohjTIFhVu2R9k27AAAS/0JIAAA=" ChangeKey="DwAAABYAAAD9KrxseohjTIFhVu2R9k27AAAS/WvY"/>
+              <t:IsDelegated>false</t:IsDelegated>
+              <t:IsOutOfDate>false</t:IsOutOfDate>
+              <t:HasBeenProcessed>true</t:HasBeenProcessed>
+              <t:ResponseType>Accept</t:ResponseType>
+              <t:UID>040000008200E00074C5B7101A82E00800000000707444DB5A04D201000000000000000010000000ECA52B0FBFB5D24DA2A26F67A6A0D977</t:UID>
+              <t:DateTimeStamp>2016-09-03T00:59:59Z</t:DateTimeStamp>
+              <t:IsOrganizer>false</t:IsOrganizer>
+              <t:MeetingRequestType>InformationalUpdate</t:MeetingRequestType>
+              <t:IntendedFreeBusyStatus>Busy</t:IntendedFreeBusyStatus>
+              <t:Start>2016-09-03T02:30:00Z</t:Start>
+              <t:End>2016-09-03T03:00:00Z</t:End>
+              <t:Location>Conf. Octoblu (Tempe)</t:Location>
+              <t:IsMeeting>true</t:IsMeeting>
+              <t:IsCancelled>false</t:IsCancelled>
+              <t:IsRecurring>false</t:IsRecurring>
+              <t:MeetingRequestWasSent>true</t:MeetingRequestWasSent>
+              <t:CalendarItemType>Single</t:CalendarItemType>
+              <t:Organizer>
+                <t:Mailbox>
+                  <t:Name>Roy van de Water</t:Name>
+                  <t:EmailAddress>Roy.vandeWater@citrix.com</t:EmailAddress>
+                  <t:RoutingType>SMTP</t:RoutingType>
+                  <t:MailboxType>Mailbox</t:MailboxType>
+                </t:Mailbox>
+              </t:Organizer>
+              <t:RequiredAttendees>
+                <t:Attendee>
+                  <t:Mailbox>
+                    <t:Name>Roy van de Water</t:Name>
+                    <t:EmailAddress>Roy.vandeWater@citrix.com</t:EmailAddress>
+                    <t:RoutingType>SMTP</t:RoutingType>
+                    <t:MailboxType>Mailbox</t:MailboxType>
+                  </t:Mailbox>
+                </t:Attendee>
+                <t:Attendee>
+                  <t:Mailbox>
+                    <t:Name>Aaron Herres</t:Name>
+                    <t:EmailAddress>Aaron.Herres@citrix.com</t:EmailAddress>
+                    <t:RoutingType>SMTP</t:RoutingType>
+                    <t:MailboxType>Mailbox</t:MailboxType>
+                  </t:Mailbox>
+                </t:Attendee>
+              </t:RequiredAttendees>
+              <t:ConflictingMeetingCount>0</t:ConflictingMeetingCount>
+              <t:AdjacentMeetingCount>0</t:AdjacentMeetingCount>
+              <t:Duration>PT30M</t:Duration>
+              <t:TimeZone>(UTC-07:00) Arizona</t:TimeZone>
+              <t:AppointmentSequenceNumber>24</t:AppointmentSequenceNumber>
+              <t:AppointmentState>3</t:AppointmentState>
+              <t:ConferenceType>0</t:ConferenceType>
+              <t:NetShowUrl/>
+              <t:StartWallClock>2016-09-02T19:30:00-07:00</t:StartWallClock>
+              <t:EndWallClock>2016-09-02T20:00:00-07:00</t:EndWallClock>
+              <t:StartTimeZoneId>US Mountain Standard Time</t:StartTimeZoneId>
+              <t:EndTimeZoneId>US Mountain Standard Time</t:EndTimeZoneId>
+            </t:MeetingRequest>
+          </m:Items>
+        </m:GetItemResponseMessage>
+      </m:ResponseMessages>
+    </m:GetItemResponse>
+  </s:Body>
+</s:Envelope>

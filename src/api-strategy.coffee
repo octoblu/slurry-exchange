@@ -34,6 +34,8 @@ class ExchangeStrategy extends PassportStrategy
         id:       user.id
         username: user.name
         secrets:
+          hostname: hostname
+          domain:   domain
           credentials:
             uuid:  username
             token: password
