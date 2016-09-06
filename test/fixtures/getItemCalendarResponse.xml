@@ -33,7 +33,7 @@
                 <t:InternetMessageHeader HeaderName="Subject">1 vs 1</t:InternetMessageHeader>
                 <t:InternetMessageHeader HeaderName="Thread-Topic">1 vs 1</t:InternetMessageHeader>
                 <t:InternetMessageHeader HeaderName="Thread-Index">AdIElXeE+xce251qQsm5uoLY9rihBgAGrVnw</t:InternetMessageHeader>
-                <t:InternetMessageHeader HeaderName="X-MS-Exchange-Calendar-Originator-Id">0a3cd424-fc0f-427f-94cc-747b5e883f23;/o=Citrix Systems/ou=Exchange Administrative Group (FYDIBOHF23SPDLT)/cn=Recipients/cn=Roy van de Watere3e</t:InternetMessageHeader>
+                <t:InternetMessageHeader HeaderName="X-MS-Exchange-Calendar-Originator-Id">0a3cd424-fc0f-427f-94cc-747b5e883f23;/o=Citrix Systems/ou=Exchange Administrative Group (FYDIBOHF23SPDLT)/cn=Recipients/cn=Roy Zandewagere3e</t:InternetMessageHeader>
                 <t:InternetMessageHeader HeaderName="Date">Fri, 2 Sep 2016 17:59:59 -0700</t:InternetMessageHeader>
                 <t:InternetMessageHeader HeaderName="Message-ID">&lt;6182a2f13484475996fe1a4e94db92f3@SJCPEX02CL03.citrite.net&gt;</t:InternetMessageHeader>
                 <t:InternetMessageHeader HeaderName="Accept-Language">en-US</t:InternetMessageHeader>
@@ -48,7 +48,7 @@
                 <t:InternetMessageHeader HeaderName="X-MS-Exchange-Organization-AuthMechanism">04</t:InternetMessageHeader>
                 <t:InternetMessageHeader HeaderName="X-Originating-IP">[10.9.154.239]</t:InternetMessageHeader>
                 <t:InternetMessageHeader HeaderName="X-MS-Exchange-Organization-Network-Message-Id">901d159c-7405-4138-e2ec-08d3d395a123</t:InternetMessageHeader>
-                <t:InternetMessageHeader HeaderName="Return-Path">Roy.vandeWater@citrix.com</t:InternetMessageHeader>
+                <t:InternetMessageHeader HeaderName="Return-Path">Roy.Zandewager@citrix.com</t:InternetMessageHeader>
                 <t:InternetMessageHeader HeaderName="X-MS-Exchange-Organization-AVStamp-Enterprise">1.0</t:InternetMessageHeader>
                 <t:InternetMessageHeader HeaderName="X-MS-Exchange-Organization-Recipient-P2-Type">Bcc</t:InternetMessageHeader>
               </t:InternetMessageHeaders>
@@ -67,7 +67,7 @@
               <t:ReminderNextTime>2016-09-02T02:15:00Z</t:ReminderNextTime>
               <t:ReminderMinutesBeforeStart>15</t:ReminderMinutesBeforeStart>
               <t:DisplayCc/>
-              <t:DisplayTo>Aaron Herres</t:DisplayTo>
+              <t:DisplayTo>Aaron Heretic</t:DisplayTo>
               <t:HasAttachments>false</t:HasAttachments>
               <t:Culture>en-US</t:Culture>
               <t:EffectiveRights>
@@ -91,16 +91,16 @@
               <t:EntityExtractionResult/>
               <t:Sender>
                 <t:Mailbox>
-                  <t:Name>Roy van de Water</t:Name>
-                  <t:EmailAddress>Roy.vandeWater@citrix.com</t:EmailAddress>
+                  <t:Name>Roy Zandewager</t:Name>
+                  <t:EmailAddress>Roy.Zandewager@citrix.com</t:EmailAddress>
                   <t:RoutingType>SMTP</t:RoutingType>
                   <t:MailboxType>Mailbox</t:MailboxType>
                 </t:Mailbox>
               </t:Sender>
               <t:ToRecipients>
                 <t:Mailbox>
-                  <t:Name>Aaron Herres</t:Name>
-                  <t:EmailAddress>Aaron.Herres@citrix.com</t:EmailAddress>
+                  <t:Name>Aaron Heretic</t:Name>
+                  <t:EmailAddress>Aaron.Heretic@citrix.com</t:EmailAddress>
                   <t:RoutingType>SMTP</t:RoutingType>
                   <t:MailboxType>Mailbox</t:MailboxType>
                 </t:Mailbox>
@@ -110,8 +110,8 @@
               <t:ConversationTopic>1 vs 1</t:ConversationTopic>
               <t:From>
                 <t:Mailbox>
-                  <t:Name>Roy van de Water</t:Name>
-                  <t:EmailAddress>Roy.vandeWater@citrix.com</t:EmailAddress>
+                  <t:Name>Roy Zandewager</t:Name>
+                  <t:EmailAddress>Roy.Zandewager@citrix.com</t:EmailAddress>
                   <t:RoutingType>SMTP</t:RoutingType>
                   <t:MailboxType>Mailbox</t:MailboxType>
                 </t:Mailbox>
@@ -155,8 +155,8 @@
               <t:CalendarItemType>Single</t:CalendarItemType>
               <t:Organizer>
                 <t:Mailbox>
-                  <t:Name>Roy van de Water</t:Name>
-                  <t:EmailAddress>Roy.vandeWater@citrix.com</t:EmailAddress>
+                  <t:Name>Roy Zandewager</t:Name>
+                  <t:EmailAddress>Roy.Zandewager@citrix.com</t:EmailAddress>
                   <t:RoutingType>SMTP</t:RoutingType>
                   <t:MailboxType>Mailbox</t:MailboxType>
                 </t:Mailbox>
@@ -164,16 +164,16 @@
               <t:RequiredAttendees>
                 <t:Attendee>
                   <t:Mailbox>
-                    <t:Name>Roy van de Water</t:Name>
-                    <t:EmailAddress>Roy.vandeWater@citrix.com</t:EmailAddress>
+                    <t:Name>Roy Zandewager</t:Name>
+                    <t:EmailAddress>Roy.Zandewager@citrix.com</t:EmailAddress>
                     <t:RoutingType>SMTP</t:RoutingType>
                     <t:MailboxType>Mailbox</t:MailboxType>
                   </t:Mailbox>
                 </t:Attendee>
                 <t:Attendee>
                   <t:Mailbox>
-                    <t:Name>Aaron Herres</t:Name>
-                    <t:EmailAddress>Aaron.Herres@citrix.com</t:EmailAddress>
+                    <t:Name>Aaron Heretic</t:Name>
+                    <t:EmailAddress>Aaron.Heretic@citrix.com</t:EmailAddress>
                     <t:RoutingType>SMTP</t:RoutingType>
                     <t:MailboxType>Mailbox</t:MailboxType>
                   </t:Mailbox>

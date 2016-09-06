@@ -48,6 +48,7 @@
     "meshblu-config": "^6.0.0",
     "meshblu-encryption": "^1.0.3",
     "meshblu-http": "^7.2.0",
+    "moment": "^2.14.1",
     "morgan": "^1.6.1",
     "ntlm": "^0.1.1",
     "passport": "^0.3.2",

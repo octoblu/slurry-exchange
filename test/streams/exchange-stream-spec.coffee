@@ -24,11 +24,12 @@ describe 'ExchangeStream', ->
     @request = new PassThrough objectMode: true
     @sut = new ExchangeStream {
       request: @request
-      protocol: 'http'
-      hostname: 'localhost'
-      port: port
-      username: 'foo'
-      password: 'bar'
+      connectionOptions:
+        protocol: 'http'
+        hostname: 'localhost'
+        port: port
+        username: 'foo'
+        password: 'bar'
     }
 
   afterEach (done) ->
@@ -45,10 +46,20 @@ describe 'ExchangeStream', ->
         .post '/EWS/Exchange.asmx'
         .reply 200, GET_ITEM_CALENDAR_RESPONSE
 
-      @request.write CALENDAR_EVENT, done
+      @request.write CALENDAR_EVENT
+      @sut.on 'readable', done
 
-    it 'should have a calendar event readable', ->
+    it.only 'should have a calendar event readable', ->
       event = @sut.read()
       expect(event).to.deep.equal {
-        name: '1 vs 1'
+        subject: '1 vs 1'
+        startTime: '2016-09-03T02:30:00Z'
+        endTime: '2016-09-03T03:00:00Z'
+        attendees: [{
+          name: "Roy Zandewager"
+          email: "Roy.Zandewager@citrix.com"
+        }, {
+          name: "Aaron Heretic"
+          email: "Aaron.Heretic@citrix.com"
+        }]
       }
