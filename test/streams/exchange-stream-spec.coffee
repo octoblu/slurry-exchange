@@ -55,6 +55,7 @@ describe 'ExchangeStream', ->
         subject: '1 vs 1'
         startTime: '2016-09-03T02:30:00Z'
         endTime: '2016-09-03T03:00:00Z'
+        location: 'Conf. Octoblu (Tempe)'
         attendees: [{
           name: "Roy Zandewager"
           email: "Roy.Zandewager@citrix.com"

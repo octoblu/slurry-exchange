@@ -1,32 +1,26 @@
-_       = require 'lodash'
 MeshbluHttp   = require 'meshblu-http'
 MeshbluConfig = require 'meshblu-config'
 
-Exchange = require '../services/exchange-service'
+Exchange = require '../../services/exchange-service'
 
-class PublicFilteredStream
+class CalendarStream
   constructor: ({encrypted, @auth, @userDeviceUuid}) ->
     meshbluConfig = new MeshbluConfig({@auth}).toJSON()
     meshbluHttp = new MeshbluHttp meshbluConfig
     @_throttledMessage = meshbluHttp.message
 
-    {hostname, domain} = encrypted
-    {username, password} = encrypted.secrets
+    {hostname, domain} = encrypted.secrets
+    {username, password} = encrypted.secrets.credentials
 
     @exchange = new Exchange {hostname, domain, username, password}
 
-
-  do: ({slurry}, callback) =>
-    metadata =
-      track: _.join(slurry.track, ',')
-      follow: _.join(slurry.follow, ',')
-
+  do: ({}, callback) =>
     @exchange.getStreamingEvents distinguisedFolderId: 'calendar', (error, stream) =>
       return callback error if error?
       stream.on 'data', (event) =>
         message =
           devices: ['*']
-          metadata: metadata
+          metadata: {}
           data: event
 
         @_throttledMessage message, as: @userDeviceUuid, (error) =>
@@ -42,4 +36,4 @@ class PublicFilteredStream
     error.code = code
     return error
 
-module.exports = PublicFilteredStream
+module.exports = CalendarStream

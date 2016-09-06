@@ -10,15 +10,15 @@ getUserSettingsRequest    = require '../templates/getUserSettingsRequest'
 SUBSCRIPTION_ID_PATH = 'Envelope.Body.SubscribeResponse.ResponseMessages.SubscribeResponseMessage.SubscriptionId'
 
 class Exchange
-  constructor: ({protocol, hostname, port, username, password}) ->
+  constructor: ({protocol, hostname, port, @username, @password}) ->
     throw new Error 'Missing required parameter: hostname' unless hostname?
-    throw new Error 'Missing required parameter: username' unless username?
-    throw new Error 'Missing required parameter: password' unless password?
+    throw new Error 'Missing required parameter: username' unless @username?
+    throw new Error 'Missing required parameter: password' unless @password?
 
     protocol ?= 'https'
     port ?= 443
 
-    @connectionOptions = {protocol, hostname, port, username, password}
+    @connectionOptions = {protocol, hostname, port, @username, @password}
     @authenticatedRequest = new AuthenticatedRequest @connectionOptions
 
   getStreamingEvents: ({distinguisedFolderId}, callback) =>
@@ -43,8 +43,8 @@ class Exchange
     UserResponse = _.get response, 'Envelope.Body.GetUserSettingsResponseMessage.Response.UserResponses.UserResponse'
     UserSettings = _.get UserResponse, 'UserSettings.UserSetting'
 
-    name = _.find(UserSettings, Name: 'UserDisplayName').Value
-    id   = _.find(UserSettings, Name: 'UserDeploymentId').Value
+    name = _.get _.find(UserSettings, Name: 'UserDisplayName'), 'Value'
+    id   = _.get _.find(UserSettings, Name: 'UserDeploymentId'), 'Value'
 
     return callback null, { name, id }
 

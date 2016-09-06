@@ -37,8 +37,8 @@ class ExchangeStrategy extends PassportStrategy
           hostname: hostname
           domain:   domain
           credentials:
-            uuid:  username
-            token: password
+            username: username
+            password: password
       }
 
   authorizationUrl: ({bearerToken}) ->

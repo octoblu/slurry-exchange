@@ -1,0 +1,14 @@
+{
+  type: 'object'
+  title: 'Filtered Stream'
+  'x-group-name': 'Public'
+  required: ['slurry']
+  properties:
+    slurry:
+      type: 'object'
+      properties:
+        disabled:
+          type: 'boolean'
+          title: 'Disabled'
+          description: 'Stop streaming'
+}

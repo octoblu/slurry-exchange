@@ -5,6 +5,7 @@ xmlNodes = require 'xml-nodes'
 xmlObjects = require 'xml-objects'
 xml2js = require 'xml2js'
 
+debug = require('debug')('slurry-exchange:exchange-stream')
 AuthenticatedRequest = require '../services/authenticated-request'
 getItemRequest = require '../templates/getItemRequest'
 
@@ -13,7 +14,7 @@ XML_OPTIONS = {
   explicitArray: false
 }
 
-MEETING_RESPONSE_PATH = 'Envelope.Body.GetItemResponse.ResponseMessages.GetItemResponseMessage.Items.MeetingRequest'
+MEETING_RESPONSE_PATH = 'Envelope.Body.GetItemResponse.ResponseMessages.GetItemResponseMessage.Items'
 
 class ExchangeStream extends stream.Readable
   constructor: ({connectionOptions, @request}) ->
@@ -22,6 +23,7 @@ class ExchangeStream extends stream.Readable
     {protocol, hostname, port, username, password} = connectionOptions
     @authenticatedRequest = new AuthenticatedRequest {protocol, hostname, port, username, password}
 
+    debug 'connecting...'
     @request
       .pipe(xmlNodes('Envelope'))
       .pipe(xmlObjects(XML_OPTIONS))
@@ -36,6 +38,7 @@ class ExchangeStream extends stream.Readable
     moment(datetime).utc().format()
 
   _onData: (data) =>
+    debug '_onData'
     responses = _.get data, 'Envelope.Body.GetStreamingEventsResponse.ResponseMessages'
     responses = [responses] unless _.isArray responses
     _.each responses, @_onResponse
@@ -49,6 +52,7 @@ class ExchangeStream extends stream.Readable
   _onNotification: (notification) =>
     events = _.get notification, 'Notification.ModifiedEvent'
     events = [events] unless _.isArray events
+
     itemIds = _.compact _.uniq _.map(events, 'ItemId.$.Id')
     _.each itemIds, @_onItemId
 
@@ -68,12 +72,14 @@ class ExchangeStream extends stream.Readable
     _.map requiredAttendees, @_parseAttendee
 
   _parseItemResponse: (response) =>
-    meetingRequest = _.get response, MEETING_RESPONSE_PATH
+    items = _.get response, MEETING_RESPONSE_PATH
+    meetingRequest = _.first _.values items
 
     return {
       subject: _.get meetingRequest, 'Subject'
       startTime: @_normalizeDatetime _.get(meetingRequest, 'StartWallClock')
       endTime:   @_normalizeDatetime _.get(meetingRequest, 'EndWallClock')
+      location: _.get meetingRequest, 'Location'
       attendees: @_parseAttendees(meetingRequest)
     }
 
