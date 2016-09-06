@@ -44,6 +44,7 @@ class ExchangeStream extends stream.Readable
     _.each responses, @_onResponse
 
   _onItemId: (itemId) =>
+    debug '_onItemId'
     @authenticatedRequest.doEws body: getItemRequest({itemId}), (error, response) =>
       return console.error error.message if error?
 
@@ -74,8 +75,6 @@ class ExchangeStream extends stream.Readable
   _parseItemResponse: (response) =>
     items = _.get response, MEETING_RESPONSE_PATH
     meetingRequest = _.first _.values items
-
-
 
     return {
       subject: _.get meetingRequest, 'Subject'
