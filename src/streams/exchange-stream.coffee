@@ -75,10 +75,13 @@ class ExchangeStream extends stream.Readable
     items = _.get response, MEETING_RESPONSE_PATH
     meetingRequest = _.first _.values items
 
+
+
     return {
       subject: _.get meetingRequest, 'Subject'
       startTime: @_normalizeDatetime _.get(meetingRequest, 'StartWallClock')
       endTime:   @_normalizeDatetime _.get(meetingRequest, 'EndWallClock')
+      itemId: _.get meetingRequest, 'ItemId.$.Id'
       location: _.get meetingRequest, 'Location'
       attendees: @_parseAttendees(meetingRequest)
     }

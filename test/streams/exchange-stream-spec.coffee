@@ -55,6 +55,7 @@ describe 'ExchangeStream', ->
         subject: '1 vs 1'
         startTime: '2016-09-03T02:30:00Z'
         endTime: '2016-09-03T03:00:00Z'
+        itemId: 'AAMkADYxNGJmNGNmLTIxYTctNDlkOC1hZWRmLTJjMTMzZmI5YmUxNABGAAAAAAACtVr7DjkQQ4cFx7dwBexwBwD9KrxseohjTIFhVu2R9k27AAAAAAEKAAD9KrxseohjTIFhVu2R9k27AAAS/1nWAAA='
         location: 'Conf. Octoblu (Tempe)'
         attendees: [{
           name: "Roy Zandewager"
