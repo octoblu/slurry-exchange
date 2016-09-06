@@ -50,6 +50,7 @@ class AuthenticatedRequest
       unless response.statusCode == 401
         return callback new Error("Expected status: 401, received #{response.statusCode}")
 
+      console.log 'responseHeader', {@username, @password}
       headers = {
         'Authorization': responseHeader(response, urlStr, '', @username, @password)
         'Content-Type': 'text/xml; charset=utf-8'
