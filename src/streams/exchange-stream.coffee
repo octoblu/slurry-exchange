@@ -44,21 +44,23 @@ class ExchangeStream extends stream.Readable
     _.each responses, @_onResponse
 
   _onItemId: (itemId) =>
-    debug '_onItemId'
+    debug '_onItemId', itemId
     @authenticatedRequest.doEws body: getItemRequest({itemId}), (error, response) =>
       return console.error error.message if error?
 
       @push @_parseItemResponse response
 
   _onNotification: (notification) =>
-    events = _.get notification, 'Notification.ModifiedEvent'
+    debug '_onNotification'
+    events = _.get notification, 'ModifiedEvent'
     events = [events] unless _.isArray events
 
     itemIds = _.compact _.uniq _.map(events, 'ItemId.$.Id')
     _.each itemIds, @_onItemId
 
   _onResponse: (response) =>
-    notifications = _.get response, 'GetStreamingEventsResponseMessage.Notifications'
+    debug '_onResponse'
+    notifications = _.get response, 'GetStreamingEventsResponseMessage.Notifications.Notification'
     notifications = [notifications] unless _.isArray notifications
     _.each notifications, @_onNotification
 
