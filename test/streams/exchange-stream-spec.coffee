@@ -49,7 +49,7 @@ describe 'ExchangeStream', ->
       @request.write CALENDAR_EVENT
       @sut.on 'readable', done
 
-    it.only 'should have a calendar event readable', ->
+    it 'should have a calendar event readable', ->
       event = @sut.read()
       expect(event).to.deep.equal {
         subject: '1 vs 1'
