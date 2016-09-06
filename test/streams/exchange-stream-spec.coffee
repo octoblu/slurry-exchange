@@ -29,7 +29,7 @@ describe 'ExchangeStream', ->
         protocol: 'http'
         hostname: 'localhost'
         port: port
-        username: 'foo'
+        username: 'foo@biz.biz'
         password: 'bar'
     }
 

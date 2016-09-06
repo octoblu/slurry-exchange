@@ -38,11 +38,12 @@ class AuthenticatedRequest
 
   _getRequest: ({pathname}, callback) =>
     urlStr = url.format {@protocol, @hostname, @port, pathname}
+    hostname = _.last _.split(@username, '@')
     options = {
       url: urlStr
       forever: true
       headers:
-        'Authorization': challengeHeader('', 'citrite.net')
+        'Authorization': challengeHeader('', hostname)
     }
 
     request.post options, (error, response) =>
