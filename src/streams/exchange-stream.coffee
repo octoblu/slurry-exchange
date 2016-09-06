@@ -84,7 +84,9 @@ class ExchangeStream extends stream.Readable
       endTime:   @_normalizeDatetime _.get(meetingRequest, 'EndWallClock')
       accepted: "Accept" == _.get(meetingRequest, 'ResponseType')
       itemId: _.get meetingRequest, 'ItemId.$.Id'
-      location: _.get meetingRequest, 'ReceivedBy.Mailbox.Name'
+      recipient:
+        name: _.get meetingRequest, 'ReceivedBy.Mailbox.Name'
+        email: _.get meetingRequest, 'ReceivedBy.Mailbox.EmailAddress'
       attendees: @_parseAttendees(meetingRequest)
     }
 

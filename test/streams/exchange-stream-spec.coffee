@@ -58,7 +58,9 @@ describe 'ExchangeStream', ->
         endTime: '2016-09-03T03:00:00Z'
         itemId: 'AAMkADYxNGJmNGNmLTIxYTctNDlkOC1hZWRmLTJjMTMzZmI5YmUxNABGAAAAAAACtVr7DjkQQ4cFx7dwBexwBwD9KrxseohjTIFhVu2R9k27AAAAAAEKAAD9KrxseohjTIFhVu2R9k27AAAS/1nWAAA='
         accepted: true
-        location: 'Conf. Octoblu (Tempe)'
+        recipient:
+          name: 'Conf. Octoblu (Tempe)'
+          email: 'octobluconf@citrix.com'
         attendees: [{
           name: "Roy Zandewager"
           email: "Roy.Zandewager@citrix.com"
@@ -89,7 +91,9 @@ describe 'ExchangeStream', ->
         startTime: '2016-09-03T02:30:00Z'
         endTime: '2016-09-03T03:00:00Z'
         itemId: 'AAMkADYxNGJmNGNmLTIxYTctNDlkOC1hZWRmLTJjMTMzZmI5YmUxNABGAAAAAAACtVr7DjkQQ4cFx7dwBexwBwD9KrxseohjTIFhVu2R9k27AAAAAAEKAAD9KrxseohjTIFhVu2R9k27AAAS/1nWAAA='
-        location: 'Conf. Octoblu (Tempe)'
+        recipient:
+          name: 'Conf. Octoblu (Tempe)'
+          email: 'octobluconf@citrix.com'
         accepted: true
         attendees: [{
           name: "Roy Zandewager"
