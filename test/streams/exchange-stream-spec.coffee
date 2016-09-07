@@ -110,6 +110,8 @@ describe 'ExchangeStream', ->
 
   describe 'when the request emits a deleted item event', ->
     beforeEach (done) ->
+      @sut.on 'readable', done
+
       @server
         .post '/EWS/Exchange.asmx'
         .set 'Authorization', NEGOTIATE
@@ -120,7 +122,6 @@ describe 'ExchangeStream', ->
         .reply 200, GET_ITEM_NOT_FOUND_RESPONSE
 
       @request.write CALENDAR_DELETE_EVENT
-      @sut.on 'readable', done
 
     it 'should have a deleted calendar event readable', ->
       event = @sut.read()

@@ -30,12 +30,16 @@ class ExchangeStream extends stream.Readable
       .pipe(xmlObjects(XML_OPTIONS))
       .on 'data', @_onData
 
-    tee.on 'data', (data) => console.log data.toString()
+    # tee.on 'data', (data) => console.log data.toString()
 
   destroy: =>
     return @request.abort() if _.isFunction @request.abort
     @request.socket.destroy()
     @push null
+
+  _itemIsNotFound: (response) =>
+    responseCode = _.get response, 'Envelope.Body.GetItemResponse.ResponseMessages.GetItemResponseMessage.ResponseCode'
+    return responseCode == 'ErrorItemNotFound'
 
   _normalizeDatetime: (datetime) =>
     moment(datetime).utc().format()
@@ -44,34 +48,46 @@ class ExchangeStream extends stream.Readable
     debug '_onData', JSON.stringify(data)
     responses = _.get data, 'Envelope.Body.GetStreamingEventsResponse.ResponseMessages'
     responses = [responses] unless _.isArray responses
-    _.each responses, @_onResponse
+    _.each _.compact(responses), @_onResponse
+
+  _onDeletedItemId: (itemId) =>
+    debug '_onDeletedItemId'
+    @push {itemId, eventType: 'deleted'}
 
   _onItemId: (itemId) =>
     debug '_onItemId', itemId
     @authenticatedRequest.doEws body: getItemRequest({itemId}), (error, response) =>
       return console.error error.message if error?
 
+      return if @_itemIsNotFound response
       @push @_parseItemResponse response
 
-  _onNotification: (notification) =>
-    debug '_onNotification'
-    events = _.get notification, 'ModifiedEvent'
-    events = [events] unless _.isArray events
-
-    itemIds = _.compact _.uniq _.map(events, 'ItemId.$.Id')
+  _onModifiedEvents: (events) =>
+    debug '_onModifiedEvents', events
+    itemIds = _.uniq _.compact _.map(events, 'ItemId.$.Id')
     _.each itemIds, @_onItemId
 
-    events = _.get notification, 'MovedEvent'
-    events = [events] unless _.isArray events
+  _onMovedEvents: (events) =>
+    debug '_onMovedEvents', events
+    itemIds = _.uniq _.compact _.map(events, 'OldItemId.$.Id')
+    _.each itemIds, @_onDeletedItemId
 
-    itemIds = _.compact _.uniq _.map(events, 'ItemId.$.Id')
-    _.each itemIds, @_onMovedItemId
+  _onNotification: (notification) =>
+    debug '_onNotification', notification
+
+    modifiedEvents = _.get(notification, 'ModifiedEvent')
+    modifiedEvents = [modifiedEvents] unless _.isArray modifiedEvents
+    movedEvents    = _.get(notification, 'MovedEvent')
+    movedEvents    = [movedEvents] unless _.isArray movedEvents
+
+    @_onModifiedEvents modifiedEvents
+    @_onMovedEvents movedEvents
 
   _onResponse: (response) =>
     debug '_onResponse'
     notifications = _.get response, 'GetStreamingEventsResponseMessage.Notifications.Notification'
     notifications = [notifications] unless _.isArray notifications
-    _.each notifications, @_onNotification
+    _.each _.compact(notifications), @_onNotification
 
   _parseAttendee: (requiredAttendee) =>
     {
