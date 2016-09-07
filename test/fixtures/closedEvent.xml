@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap11:Header xmlns:soap11="http://schemas.xmlsoap.org/soap/envelope/">
+    <ServerVersionInfo xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" MajorVersion="15" MinorVersion="0" MajorBuildNumber="1210" MinorBuildNumber="2" Version="V2_23" xmlns="http://schemas.microsoft.com/exchange/services/2006/types" />
+  </soap11:Header>
+  <soap11:Body xmlns:soap11="http://schemas.xmlsoap.org/soap/envelope/">
+    <m:GetStreamingEventsResponse xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:t="http://schemas.microsoft.com/exchange/services/2006/types" xmlns:m="http://schemas.microsoft.com/exchange/services/2006/messages">
+      <m:ResponseMessages>
+        <m:GetStreamingEventsResponseMessage ResponseClass="Success">
+          <m:ResponseCode>NoError</m:ResponseCode>
+          <m:ConnectionStatus>Closed</m:ConnectionStatus>
+        </m:GetStreamingEventsResponseMessage>
+      </m:ResponseMessages>
+    </m:GetStreamingEventsResponse>
+  </soap11:Body>
+</Envelope>

@@ -14,27 +14,37 @@ XML_OPTIONS = {
   explicitArray: false
 }
 
+CONNECTION_STATUS_PATH = 'Envelope.Body.GetStreamingEventsResponse.ResponseMessages.GetStreamingEventsResponseMessage.ConnectionStatus'
 MEETING_RESPONSE_PATH = 'Envelope.Body.GetItemResponse.ResponseMessages.GetItemResponseMessage.Items'
 
 class ExchangeStream extends stream.Readable
-  constructor: ({connectionOptions, @request}) ->
+  constructor: ({connectionOptions, @request, timeout}) ->
     super objectMode: true
+
+    timeout ?= 60 * 1000
 
     {protocol, hostname, port, username, password} = connectionOptions
     @authenticatedRequest = new AuthenticatedRequest {protocol, hostname, port, username, password}
 
     debug 'connecting...'
-    tee = @request
+    @request
       .pipe(xmlNodes('Envelope'))
-    tee
       .pipe(xmlObjects(XML_OPTIONS))
       .on 'data', @_onData
 
-    # tee.on 'data', (data) => console.log data.toString()
+    @_pushBackTimeout = _.debounce @_onTimeout, timeout
+    @_pushBackTimeout()
+
+    # @request
+    #   .pipe(xmlNodes('Envelope'))
+    #   .on 'data', (data) => console.log data.toString()
 
   destroy: =>
-    return @request.abort() if _.isFunction @request.abort
-    @request.socket.destroy()
+    debug 'destroy'
+    @_pushBackTimeout.cancel()
+    @request.abort?()
+    @request.socket?.destroy?()
+    @_isClosed = true
     @push null
 
   _itemIsNotFound: (response) =>
@@ -45,35 +55,41 @@ class ExchangeStream extends stream.Readable
     moment(datetime).utc().format()
 
   _onData: (data) =>
-    debug '_onData', JSON.stringify(data)
+    debug '_onData'
+
+    return @destroy() if 'Closed' == _.get data, CONNECTION_STATUS_PATH
+    @_pushBackTimeout()
+
     responses = _.get data, 'Envelope.Body.GetStreamingEventsResponse.ResponseMessages'
     responses = [responses] unless _.isArray responses
     _.each _.compact(responses), @_onResponse
 
   _onDeletedItemId: (itemId) =>
-    debug '_onDeletedItemId'
+    debug '_onDeletedItemId', itemId
+    return if @_isClosed
     @push {itemId, eventType: 'deleted'}
 
   _onItemId: (itemId) =>
     debug '_onItemId', itemId
     @authenticatedRequest.doEws body: getItemRequest({itemId}), (error, response) =>
-      return console.error error.message if error?
+      return console.error 'oh geez', error.message if error?
 
       return if @_itemIsNotFound response
+      return if @_isClosed
       @push @_parseItemResponse response
 
   _onModifiedEvents: (events) =>
-    debug '_onModifiedEvents', events
+    debug '_onModifiedEvents'
     itemIds = _.uniq _.compact _.map(events, 'ItemId.$.Id')
     _.each itemIds, @_onItemId
 
   _onMovedEvents: (events) =>
-    debug '_onMovedEvents', events
+    debug '_onMovedEvents'
     itemIds = _.uniq _.compact _.map(events, 'OldItemId.$.Id')
     _.each itemIds, @_onDeletedItemId
 
   _onNotification: (notification) =>
-    debug '_onNotification', notification
+    debug '_onNotification'
 
     modifiedEvents = _.get(notification, 'ModifiedEvent')
     modifiedEvents = [modifiedEvents] unless _.isArray modifiedEvents
@@ -88,6 +104,9 @@ class ExchangeStream extends stream.Readable
     notifications = _.get response, 'GetStreamingEventsResponseMessage.Notifications.Notification'
     notifications = [notifications] unless _.isArray notifications
     _.each _.compact(notifications), @_onNotification
+
+  _onTimeout: =>
+    @destroy()
 
   _parseAttendee: (requiredAttendee) =>
     {
