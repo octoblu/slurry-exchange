@@ -24,10 +24,13 @@ class ExchangeStream extends stream.Readable
     @authenticatedRequest = new AuthenticatedRequest {protocol, hostname, port, username, password}
 
     debug 'connecting...'
-    @request
+    tee = @request
       .pipe(xmlNodes('Envelope'))
+    tee
       .pipe(xmlObjects(XML_OPTIONS))
       .on 'data', @_onData
+
+    tee.on 'data', (data) => console.log data.toString()
 
   destroy: =>
     return @request.abort() if _.isFunction @request.abort
@@ -38,7 +41,7 @@ class ExchangeStream extends stream.Readable
     moment(datetime).utc().format()
 
   _onData: (data) =>
-    debug '_onData'
+    debug '_onData', JSON.stringify(data)
     responses = _.get data, 'Envelope.Body.GetStreamingEventsResponse.ResponseMessages'
     responses = [responses] unless _.isArray responses
     _.each responses, @_onResponse
@@ -57,6 +60,12 @@ class ExchangeStream extends stream.Readable
 
     itemIds = _.compact _.uniq _.map(events, 'ItemId.$.Id')
     _.each itemIds, @_onItemId
+
+    events = _.get notification, 'MovedEvent'
+    events = [events] unless _.isArray events
+
+    itemIds = _.compact _.uniq _.map(events, 'ItemId.$.Id')
+    _.each itemIds, @_onMovedItemId
 
   _onResponse: (response) =>
     debug '_onResponse'
@@ -83,6 +92,7 @@ class ExchangeStream extends stream.Readable
       startTime: @_normalizeDatetime _.get(meetingRequest, 'StartWallClock')
       endTime:   @_normalizeDatetime _.get(meetingRequest, 'EndWallClock')
       accepted: "Accept" == _.get(meetingRequest, 'ResponseType')
+      eventType: 'modified'
       itemId: _.get meetingRequest, 'ItemId.$.Id'
       recipient:
         name: _.get meetingRequest, 'ReceivedBy.Mailbox.Name'
