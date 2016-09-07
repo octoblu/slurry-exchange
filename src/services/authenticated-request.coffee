@@ -23,7 +23,9 @@ class AuthenticatedRequest
       request.post {body}, (error, response) =>
         return callback error if error?
 
-        @_xml2js response.body, callback
+        @_xml2js response.body, (error, obj) =>
+          return callback error if error?
+          return callback null, obj, {statusCode: response.statusCode}
 
   doAutodiscover: ({body}, callback) =>
     @do {body, pathname: AUTODISCOVER_PATH}, callback
