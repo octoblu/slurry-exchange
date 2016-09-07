@@ -73,6 +73,7 @@ class ExchangeStream extends stream.Readable
     debug '_onItemId', itemId
     @authenticatedRequest.doEws body: getItemRequest({itemId}), (error, response) =>
       return console.error 'oh geez', error.message if error?
+      debug '_onItemId:response', JSON.stringify(response)
 
       return if @_itemIsNotFound response
       return if @_isClosed
