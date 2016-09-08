@@ -131,6 +131,8 @@ class ExchangeStream extends stream.Readable
       accepted: "Accept" == _.get(meetingRequest, 'ResponseType')
       eventType: 'modified'
       itemId: _.get meetingRequest, 'ItemId.$.Id'
+      location:
+        name: _.get meetingRequest, 'Location'
       recipient:
         name: _.get meetingRequest, 'ReceivedBy.Mailbox.Name'
         email: _.get meetingRequest, 'ReceivedBy.Mailbox.EmailAddress'

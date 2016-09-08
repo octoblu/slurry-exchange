@@ -63,6 +63,8 @@ describe 'ExchangeStream', ->
         endTime: '2016-09-03T03:00:00Z'
         eventType: 'modified'
         itemId: 'AAMkADYxNGJmNGNmLTIxYTctNDlkOC1hZWRmLTJjMTMzZmI5YmUxNABGAAAAAAACtVr7DjkQQ4cFx7dwBexwBwD9KrxseohjTIFhVu2R9k27AAAAAAEKAAD9KrxseohjTIFhVu2R9k27AAAS/1nWAAA='
+        location:
+          name: 'Conf. Octoblu (Tempe)'
         accepted: true
         recipient:
           name: 'Conf. Octoblu (Tempe)'
@@ -98,6 +100,8 @@ describe 'ExchangeStream', ->
         endTime: '2016-09-03T03:00:00Z'
         eventType: 'modified'
         itemId: 'AAMkADYxNGJmNGNmLTIxYTctNDlkOC1hZWRmLTJjMTMzZmI5YmUxNABGAAAAAAACtVr7DjkQQ4cFx7dwBexwBwD9KrxseohjTIFhVu2R9k27AAAAAAEKAAD9KrxseohjTIFhVu2R9k27AAAS/1nWAAA='
+        location:
+          name: 'Conf. Octoblu (Tempe)'
         recipient:
           name: 'Conf. Octoblu (Tempe)'
           email: 'octobluconf@citrix.com'
