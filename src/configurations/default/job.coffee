@@ -22,6 +22,9 @@ class CalendarStream
       slurryStream.destroy = =>
         stream.destroy()
 
+      stream.on 'end', =>
+        slurryStream.emit 'close'
+
       stream.on 'data', (event) =>
         message =
           devices: ['*']
