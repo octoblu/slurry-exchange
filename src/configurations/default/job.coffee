@@ -1,7 +1,7 @@
 MeshbluHttp   = require 'meshblu-http'
 MeshbluConfig = require 'meshblu-config'
-
-Exchange = require '../../services/exchange-service'
+SlurryStream  = require 'slurry-core/slurry-stream'
+Exchange      = require '../../services/exchange-service'
 
 class CalendarStream
   constructor: ({encrypted, @auth, @userDeviceUuid}) ->
@@ -17,6 +17,11 @@ class CalendarStream
   do: ({}, callback) =>
     @exchange.getStreamingEvents distinguisedFolderId: 'calendar', (error, stream) =>
       return callback error if error?
+
+      slurryStream = new SlurryStream
+      slurryStream.destroy = =>
+        stream.destroy()
+
       stream.on 'data', (event) =>
         message =
           devices: ['*']
@@ -24,12 +29,12 @@ class CalendarStream
           data: event
 
         @_throttledMessage message, as: @userDeviceUuid, (error) =>
-          console.error error if error?
+          slurryStream.emit 'error', error if error?
 
       stream.on 'error', (error) =>
-        console.error error.stack
+        slurryStream.emit 'error', error
 
-      return callback null, stream
+      return callback null, slurryStream
 
   _userError: (code, message) =>
     error = new Error message
