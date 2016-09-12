@@ -28,3 +28,4 @@ node_modules
 
 meshblu.json
 environment.cson
+.bin-dev
