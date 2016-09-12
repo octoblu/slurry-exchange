@@ -25,6 +25,9 @@ class CalendarStream
       stream.on 'end', =>
         slurryStream.emit 'close'
 
+      stream.on 'close', =>
+        slurryStream.emit 'close'
+
       stream.on 'data', (event) =>
         message =
           devices: ['*']
