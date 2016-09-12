@@ -7,6 +7,7 @@ MessageHandler   = require 'slurry-core/message-handler'
 ConfigureHandler = require 'slurry-core/configure-handler'
 ApiStrategy      = require './src/api-strategy'
 SlurrySpreader   = require 'slurry-spreader'
+MeshbluConfig = require 'meshblu-config'
 
 MISSING_SERVICE_URL = 'Missing required environment variable: SLURRY_EXCHANGE_SERVICE_URL'
 MISSING_MANAGER_URL = 'Missing required environment variable: SLURRY_EXCHANGE_MANAGER_URL'
@@ -60,6 +61,13 @@ class Command
 
         {address,port} = server.address()
         console.log "Server listening on #{address}:#{port}"
+
+   process.on 'SIGTERM', =>
+      console.log 'SIGTERM caught, exiting'
+      return process.exit 0 unless server?.stop?
+      @slurrySpreader.stop =>
+        server.stop =>
+          process.exit 0
 
 command = new Command()
 command.run()
