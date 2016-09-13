@@ -31,6 +31,7 @@ class ExchangeStream extends stream.Readable
       .pipe(xmlNodes('Envelope'))
       .pipe(xmlObjects(XML_OPTIONS))
       .on 'data', @_onData
+      .on 'error', @destroy
 
     @_pushBackTimeout = _.debounce @_onTimeout, timeout
     @_pushBackTimeout()
