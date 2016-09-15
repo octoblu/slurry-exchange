@@ -1,7 +1,8 @@
 MeshbluHttp   = require 'meshblu-http'
 MeshbluConfig = require 'meshblu-config'
 SlurryStream  = require 'slurry-core/slurry-stream'
-Exchange      = require '../../services/exchange-service'
+# Exchange      = require '../../services/exchange-service'
+Bourse        = require 'bourse'
 
 class CalendarStream
   constructor: ({encrypted, @auth, @userDeviceUuid}) ->
@@ -12,10 +13,10 @@ class CalendarStream
     {hostname, domain} = encrypted.secrets
     {username, password} = encrypted.secrets.credentials
 
-    @exchange = new Exchange {hostname, domain, username, password}
+    @bourse = new Bourse {hostname, domain, username, password}
 
   do: ({}, callback) =>
-    @exchange.getStreamingEvents distinguisedFolderId: 'calendar', (error, stream) =>
+    @bourse.getStreamingEvents distinguisedFolderId: 'calendar', (error, stream) =>
       return callback error if error?
 
       slurryStream = new SlurryStream

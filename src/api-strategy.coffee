@@ -1,7 +1,8 @@
 _ = require 'lodash'
 PassportStrategy = require 'passport-strategy'
 url = require 'url'
-Exchange = require './services/exchange-service'
+# Exchange = require './services/exchange-service'
+Bourse = require 'bourse'
 
 class ExchangeStrategy extends PassportStrategy
   constructor: (env) ->
@@ -55,8 +56,8 @@ class ExchangeStrategy extends PassportStrategy
     @_formSchemaUrl
 
   getUserFromExchange: ({hostname, domain, username, password}, callback) =>
-    exchange = new Exchange({ hostname, domain, username, password })
-    exchange.whoami callback
+    bourse = new Bourse({ hostname, domain, username, password })
+    bourse.whoami callback
 
   postUrl: ->
     {protocol, hostname, port} = url.parse @_callbackUrl
