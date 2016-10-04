@@ -16,7 +16,7 @@ class CalendarStream
     @bourse = new Bourse {hostname, domain, username, password}
 
   do: ({}, callback) =>
-    @bourse.getStreamingEvents distinguisedFolderId: 'calendar', (error, stream) =>
+    @bourse.getStreamingEvents distinguishedFolderId: 'calendar', (error, stream) =>
       return callback error if error?
 
       slurryStream = new SlurryStream
