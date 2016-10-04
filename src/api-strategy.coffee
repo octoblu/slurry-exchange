@@ -57,7 +57,12 @@ class ExchangeStrategy extends PassportStrategy
 
   getUserFromExchange: ({hostname, domain, username, password}, callback) =>
     bourse = new Bourse({ hostname, domain, username, password })
-    bourse.whoami callback
+    bourse.whoami (error, user) =>
+      return callback error if error?
+      callback null, {
+        id: "#{username}@#{hostname}"
+        name: user.name
+      }
 
   postUrl: ->
     {protocol, hostname, port} = url.parse @_callbackUrl
