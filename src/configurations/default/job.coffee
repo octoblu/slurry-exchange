@@ -2,10 +2,12 @@ MeshbluHttp   = require 'meshblu-http'
 MeshbluConfig = require 'meshblu-config'
 SlurryStream  = require 'slurry-core/slurry-stream'
 # Exchange      = require '../../services/exchange-service'
+debug = require('debug')('slurry-exchange:default:job')
 Bourse        = require 'bourse'
 
 class CalendarStream
   constructor: ({encrypted, @auth, @userDeviceUuid}) ->
+    debug 'constructing stream', @auth.uuid
     meshbluConfig = new MeshbluConfig({@auth}).toJSON()
     meshbluHttp = new MeshbluHttp meshbluConfig
     @_throttledMessage = meshbluHttp.message
