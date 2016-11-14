@@ -42,7 +42,7 @@ class Command
       disableLogging:  process.env.DISABLE_LOGGING == "true"
       meshbluConfig:   meshbluConfig
       messageHandler:  new MessageHandler {jobsPath}
-      configureHandler: new ConfigureHandler {@slurrySpreader, configurationsPath}
+      configureHandler: new ConfigureHandler {@slurrySpreader, configurationsPath, meshbluConfig}
       octobluStrategy: octobluStrategy
       port:            process.env.PORT || 80
       appOctobluHost:  process.env.APP_OCTOBLU_HOST

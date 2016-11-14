@@ -1,6 +1,6 @@
 {
   "name": "slurry-exchange",
-  "version": "4.0.4",
+  "version": "4.1.0",
   "description": "Put some description here",
   "keywords": [],
   "homepage": "https://github.com/octoblu/exchange",
@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "body-parser": "^1.14.1",
-    "bourse": "^8.4.0",
+    "bourse": "^8.4.1",
     "coffee-script": "^1.11.1",
     "cookie-parser": "^1.4.1",
     "cookie-session": "^2.0.0-alpha.1",
@@ -62,7 +62,7 @@
     "passport-octoblu": "^3.0.0",
     "request": "^2.74.0",
     "shmock": "^0.8.1",
-    "slurry-core": "^1.11.0",
+    "slurry-core": "^1.12.0",
     "slurry-spreader": "^1.4.5",
     "xml-nodes": "^0.1.5",
     "xml-objects": "^1.0.1",
