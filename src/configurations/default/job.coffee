@@ -1,7 +1,6 @@
 MeshbluHttp   = require 'meshblu-http'
 MeshbluConfig = require 'meshblu-config'
 SlurryStream  = require 'slurry-core/slurry-stream'
-# Exchange      = require '../../services/exchange-service'
 debug = require('debug')('slurry-exchange:default:job')
 Bourse        = require 'bourse'
 
@@ -19,6 +18,7 @@ class CalendarStream
 
   do: ({}, callback) =>
     @bourse.getStreamingEvents distinguishedFolderId: 'calendar', (error, stream) =>
+      return callback null, null if error? && error.message == 'ETIMEDOUT'
       return callback error if error?
 
       slurryStream = new SlurryStream
