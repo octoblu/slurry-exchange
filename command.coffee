@@ -1,3 +1,4 @@
+async            = require 'async'
 _                = require 'lodash'
 MeshbluConfig    = require 'meshblu-config'
 path             = require 'path'
@@ -5,9 +6,9 @@ Slurry           = require 'slurry-core'
 OctobluStrategy  = require 'slurry-core/octoblu-strategy'
 MessageHandler   = require 'slurry-core/message-handler'
 ConfigureHandler = require 'slurry-core/configure-handler'
-ApiStrategy      = require './src/api-strategy'
 SlurrySpreader   = require 'slurry-spreader'
-MeshbluConfig = require 'meshblu-config'
+
+ApiStrategy      = require './src/api-strategy'
 
 MISSING_SERVICE_URL = 'Missing required environment variable: SLURRY_EXCHANGE_SERVICE_URL'
 MISSING_MANAGER_URL = 'Missing required environment variable: SLURRY_EXCHANGE_MANAGER_URL'
@@ -41,7 +42,7 @@ class Command
       deviceType:      'slurry:exchange'
       disableLogging:  process.env.DISABLE_LOGGING == "true"
       meshbluConfig:   meshbluConfig
-      messageHandler:  new MessageHandler {jobsPath}
+      messageHandler:   new MessageHandler {jobsPath}
       configureHandler: new ConfigureHandler {@slurrySpreader, configurationsPath, meshbluConfig}
       octobluStrategy: octobluStrategy
       port:            process.env.PORT || 80
@@ -62,12 +63,18 @@ class Command
         {address,port} = server.address()
         console.log "Server listening on #{address}:#{port}"
 
-   process.on 'SIGTERM', =>
+    process.on 'SIGTERM', =>
       console.log 'SIGTERM caught, exiting'
-      return process.exit 0 unless server?.stop?
-      @slurrySpreader.stop =>
-        server.stop =>
-          process.exit 0
+      @gracefulExit(server)
+
+    process.on 'SIGINT', =>
+      console.log 'SIGINT caught, exiting'
+      @gracefulExit(server)
+
+  gracefulExit: (server) =>
+    return process.exit 0 unless server?.stop?
+    async.parallel [@slurrySpreader.stop, async.timeout(server.stop, 1000)], =>
+      process.exit 0
 
 command = new Command()
 command.run()
