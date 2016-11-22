@@ -226,7 +226,7 @@ bluebird@^3.3.3, bluebird@^3.3.4:
   version "3.4.6"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.4.6.tgz#01da8d821d87813d158967e743d5fe6c62cf8c0f"
 
-body-parser@^1.14.1:
+body-parser@^1.14.1, body-parser@^1.15.2:
   version "1.15.2"
   resolved "https://registry.yarnpkg.com/body-parser/-/body-parser-1.15.2.tgz#d7578cf4f1d11d5f6ea804cef35dc7a7ff6dae67"
   dependencies:
@@ -251,9 +251,9 @@ boom@2.x.x:
   dependencies:
     hoek "2.x.x"
 
-bourse@^10.0.1:
-  version "10.0.1"
-  resolved "https://registry.yarnpkg.com/bourse/-/bourse-10.0.1.tgz#4cd7b8869cb129b1b8c83d681d1a6f4be9e138cc"
+bourse@^10.0.5:
+  version "10.0.5"
+  resolved "https://registry.yarnpkg.com/bourse/-/bourse-10.0.5.tgz#7f8bb469d5f34afe29e80b09aefb625335c02f77"
   dependencies:
     async "^2.0.1"
     cheerio "^0.22.0"
@@ -264,6 +264,7 @@ bourse@^10.0.1:
     lodash "^4.15.0"
     moment "^2.14.1"
     request "^2.74.0"
+    url-regex "^4.0.0"
     xml-nodes "^0.1.5"
     xml-objects "^1.0.1"
     xml2js "^0.4.17"
@@ -302,6 +303,10 @@ builtin-modules@^1.0.0:
 bytes@~0.2.1, bytes@0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/bytes/-/bytes-0.2.1.tgz#555b08abcb063f8975905302523e4cd4ffdfdf31"
+
+bytes@2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/bytes/-/bytes-2.3.0.tgz#d5b680a165b6201739acb611542aabc2d8ceb070"
 
 bytes@2.4.0:
   version "2.4.0"
@@ -429,6 +434,23 @@ commondir@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/commondir/-/commondir-1.0.1.tgz#ddd800da0c66127393cca5950ea968a3aaf1253b"
 
+compressible@~2.0.8:
+  version "2.0.9"
+  resolved "https://registry.yarnpkg.com/compressible/-/compressible-2.0.9.tgz#6daab4e2b599c2770dd9e21e7a891b1c5a755425"
+  dependencies:
+    mime-db ">= 1.24.0 < 2"
+
+compression@^1.6.2:
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/compression/-/compression-1.6.2.tgz#cceb121ecc9d09c52d7ad0c3350ea93ddd402bc3"
+  dependencies:
+    accepts "~1.3.3"
+    bytes "2.3.0"
+    compressible "~2.0.8"
+    debug "~2.2.0"
+    on-headers "~1.0.1"
+    vary "~1.1.0"
+
 concat-map@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
@@ -511,7 +533,7 @@ core-util-is@~1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
 
-cors@^2.5.3, cors@^2.8.1:
+cors@^2.5.3, cors@^2.8.0, cors@^2.8.1:
   version "2.8.1"
   resolved "https://registry.yarnpkg.com/cors/-/cors-2.8.1.tgz#6181aa56abb45a2825be3304703747ae4e9d2383"
   dependencies:
@@ -787,6 +809,21 @@ express-meshblu-healthcheck@^1.0.1:
   dependencies:
     coffee-script "^1.9.1"
 
+express-octoblu@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/express-octoblu/-/express-octoblu-1.2.0.tgz#e21a45283fdb15f4404cf5b255e6aa868f53c46b"
+  dependencies:
+    body-parser "^1.15.2"
+    coffee-script "^1.10.0"
+    compression "^1.6.2"
+    cors "^2.8.0"
+    express "^4.14.0"
+    express-meshblu-healthcheck "^1.0.1"
+    express-package-version "0.0.2"
+    morgan "^1.7.0"
+    octoblu-raven "^4.0.2"
+    serve-favicon "^2.3.0"
+
 express-package-version@0.0.2:
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/express-package-version/-/express-package-version-0.0.2.tgz#47c73cf3c6612e10699a3da56c6799dfcc2b9302"
@@ -800,7 +837,7 @@ express-send-error@^1.1.0:
     coffee-script "^1.10.0"
     lodash "^4.6.1"
 
-express@^4.13.3:
+express@^4.13.3, express@^4.14.0:
   version "4.14.0"
   resolved "https://registry.yarnpkg.com/express/-/express-4.14.0.tgz#c1ee3f42cdc891fb3dc650a8922d51ec847d0d66"
   dependencies:
@@ -1207,6 +1244,10 @@ ioredis@^2.3.0:
     redis-commands "^1.2.0"
     redis-parser "^1.3.0"
 
+ip-regex@^1.0.1:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/ip-regex/-/ip-regex-1.0.3.tgz#dc589076f659f419c222039a33316f1c7387effd"
+
 ipaddr.js@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/ipaddr.js/-/ipaddr.js-1.1.1.tgz#c791d95f52b29c1247d5df80ada39b8a73647230"
@@ -1432,7 +1473,7 @@ json-stable-stringify@^1.0.0:
   dependencies:
     jsonify "~0.0.0"
 
-json-stringify-safe@~5.0.1:
+json-stringify-safe@~5.0.1, json-stringify-safe@5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz#1296a2d58fd45f19a0f6ce01d65701e2c735b6eb"
 
@@ -1612,7 +1653,7 @@ lodash@^3.9.1:
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
 
-lodash@^4.0.0, lodash@^4.11.1, lodash@^4.13.1, lodash@^4.14.0, lodash@^4.15.0, lodash@^4.16.6, lodash@^4.2.0, lodash@^4.5.1, lodash@^4.6.1, lodash@^4.8.2:
+lodash@^4.0.0, lodash@^4.11.1, lodash@^4.13.1, lodash@^4.14.0, lodash@^4.15.0, lodash@^4.16.4, lodash@^4.16.6, lodash@^4.2.0, lodash@^4.5.1, lodash@^4.6.1, lodash@^4.8.2:
   version "4.17.2"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.2.tgz#34a3055babe04ce42467b607d700072c7ff6bf42"
 
@@ -1636,6 +1677,10 @@ lru-cache@^4.0.1:
   dependencies:
     pseudomap "^1.0.1"
     yallist "^2.0.0"
+
+lsmod@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/lsmod/-/lsmod-1.0.0.tgz#9a00f76dca36eb23fa05350afe1b585d4299e64b"
 
 md5-hex@^1.2.0:
   version "1.3.0"
@@ -1722,6 +1767,10 @@ micromatch@^2.3.11:
     parse-glob "^3.0.4"
     regex-cache "^0.4.2"
 
+"mime-db@>= 1.24.0 < 2":
+  version "1.25.0"
+  resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.25.0.tgz#c18dbd7c73a5dbf6f44a024dc0d165a1e7b1c392"
+
 mime-db@~1.24.0:
   version "1.24.0"
   resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.24.0.tgz#e2d13f939f0016c6e4e9ad25a8652f126c467f0c"
@@ -1804,7 +1853,7 @@ moment@^2.14.1, moment@^2.15.2, moment@^2.16.0:
   version "2.16.0"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.16.0.tgz#f38f2c97c9889b0ee18fc6cc392e1e443ad2da8e"
 
-morgan@^1.6.1:
+morgan@^1.6.1, morgan@^1.7.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/morgan/-/morgan-1.7.0.tgz#eb10ca8e50d1abe0f8d3dad5c0201d052d981c62"
   dependencies:
@@ -1939,7 +1988,17 @@ object.omit@^2.0.0:
     for-own "^0.1.4"
     is-extendable "^0.1.1"
 
-on-finished@~2.3.0:
+octoblu-raven@^4.0.2:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/octoblu-raven/-/octoblu-raven-4.0.3.tgz#5d23229467e8897c95a6143a262d19163a35f414"
+  dependencies:
+    coffee-script "^1.11.1"
+    debug "^2.2.0"
+    lodash "^4.16.4"
+    on-finished "^2.3.0"
+    raven "~0.12.1"
+
+on-finished@^2.3.0, on-finished@~2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/on-finished/-/on-finished-2.3.0.tgz#20f1336481b083cd75337992a16971aa2d906947"
   dependencies:
@@ -2143,6 +2202,16 @@ range-parser@~1.2.0:
 range-parser@0.0.4:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/range-parser/-/range-parser-0.0.4.tgz#c0427ffef51c10acba0782a46c9602e744ff620b"
+
+raven@~0.12.1:
+  version "0.12.3"
+  resolved "https://registry.yarnpkg.com/raven/-/raven-0.12.3.tgz#1a70f04a2240d291d83603b40162c4bada71325c"
+  dependencies:
+    cookie "0.3.1"
+    json-stringify-safe "5.0.1"
+    lsmod "1.0.0"
+    stack-trace "0.0.9"
+    uuid "3.0.0"
 
 raw-body@~2.1.7:
   version "2.1.7"
@@ -2423,9 +2492,9 @@ slide@^1.1.5:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/slide/-/slide-1.1.6.tgz#56eb027d65b4d2dce6cb2e2d32c4d4afc9e1d707"
 
-slurry-core@^1.13.3:
-  version "1.13.3"
-  resolved "https://registry.yarnpkg.com/slurry-core/-/slurry-core-1.13.3.tgz#9e6068bffdcb018e97458548533ac8e1ff718b95"
+slurry-core@^1.13.5:
+  version "1.13.5"
+  resolved "https://registry.yarnpkg.com/slurry-core/-/slurry-core-1.13.5.tgz#904a2d7be127049b72dd522578f290ebf6edb8b3"
   dependencies:
     body-parser "^1.14.1"
     coffee-script "^1.10.0"
@@ -2438,6 +2507,7 @@ slurry-core@^1.13.3:
     express "^4.13.3"
     express-meshblu-auth "^7.0.0"
     express-meshblu-healthcheck "^1.0.1"
+    express-octoblu "^1.2.0"
     express-package-version "0.0.2"
     express-send-error "^1.1.0"
     glob "^7.0.6"
@@ -2453,9 +2523,9 @@ slurry-core@^1.13.3:
     serve-favicon "^2.3.0"
     shmock "^0.7.2"
 
-slurry-spreader@^1.5.1:
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/slurry-spreader/-/slurry-spreader-1.5.1.tgz#bd8c54d0d9f86843a5120392b78479e7d9a817d2"
+slurry-spreader@^1.5.3:
+  version "1.5.3"
+  resolved "https://registry.yarnpkg.com/slurry-spreader/-/slurry-spreader-1.5.3.tgz#8b9050982c9c0fc5b6646b86f7c112255c111d0c"
   dependencies:
     "@octoblu/redis-ns" "^1.3.1"
     async "^2.0.1"
@@ -2533,6 +2603,10 @@ sshpk@^1.7.0:
     jodid25519 "^1.0.0"
     jsbn "~0.1.0"
     tweetnacl "~0.14.0"
+
+stack-trace@0.0.9:
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/stack-trace/-/stack-trace-0.0.9.tgz#a8f6eaeca90674c333e7c43953f275b451510695"
 
 "statuses@>= 1.3.1 < 2", statuses@~1.3.0:
   version "1.3.1"
@@ -2669,6 +2743,12 @@ unpipe@~1.0.0, unpipe@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/unpipe/-/unpipe-1.0.0.tgz#b2bf4ee8514aae6165b4817829d21b2ef49904ec"
 
+url-regex@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/url-regex/-/url-regex-4.0.0.tgz#eb48fbaf380fbf4c952c76ebd2d2ce00f9b4ca32"
+  dependencies:
+    ip-regex "^1.0.1"
+
 util-deprecate@~1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
@@ -2686,6 +2766,10 @@ utils-merge@1.0.0:
 uuid@^2.0.2:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-2.0.3.tgz#67e2e863797215530dff318e5bf9dcebfd47b21a"
+
+uuid@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.0.0.tgz#6728fc0459c450d796a99c31837569bdf672d728"
 
 validate-npm-package-license@^3.0.1:
   version "3.0.1"

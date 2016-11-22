@@ -1,8 +1,8 @@
+Bourse        = require 'bourse'
 MeshbluHttp   = require 'meshblu-http'
 MeshbluConfig = require 'meshblu-config'
 SlurryStream  = require 'slurry-core/slurry-stream'
-debug = require('debug')('slurry-exchange:default:job')
-Bourse        = require 'bourse'
+debug         = require('debug')('slurry-exchange:default:job')
 
 class CalendarStream
   constructor: ({encrypted, @auth, @userDeviceUuid}) ->
@@ -23,6 +23,7 @@ class CalendarStream
 
       slurryStream = new SlurryStream
       slurryStream.destroy = =>
+        debug 'slurryStream.destroy'
         stream.destroy()
 
       stream.on 'end', =>
@@ -38,9 +39,11 @@ class CalendarStream
           data: event
 
         @_throttledMessage message, as: @userDeviceUuid, (error) =>
+          return slurryStream.emit 'delay', error if error? && error.code > 499
           slurryStream.emit 'error', error if error?
 
       stream.on 'error', (error) =>
+        @emit 'delay', error if error.message == 'ETIMEDOUT'
         slurryStream.emit 'error', error
 
       return callback null, slurryStream
