@@ -4,6 +4,8 @@ MeshbluConfig = require 'meshblu-config'
 SlurryStream  = require 'slurry-core/slurry-stream'
 debug         = require('debug')('slurry-exchange:default:job')
 
+PING_INTERVAL = 6 * 60 * 60 * 1000 # every 6 hours
+
 class CalendarStream
   constructor: ({encrypted, @auth, @userDeviceUuid}) ->
     debug 'constructing stream', @auth.uuid
@@ -24,13 +26,26 @@ class CalendarStream
       slurryStream = new SlurryStream
       slurryStream.destroy = =>
         debug 'slurryStream.destroy'
+        clearInterval @_pingInterval if @_pingInterval?
         stream.destroy()
 
       stream.on 'end', =>
+        clearInterval @_pingInterval if @_pingInterval?
         slurryStream.emit 'close'
 
       stream.on 'close', =>
+        clearInterval @_pingInterval if @_pingInterval?
         slurryStream.emit 'close'
+
+      @_pingInterval = setInterval =>
+        message =
+          devices: ['*']
+          metadata: {}
+          data: ping: Date.now()
+
+        @_throttledMessage message, as: @userDeviceUuid, (error) =>
+          slurryStream.emit 'error', error if error?
+      , PING_INTERVAL
 
       stream.on 'data', (event) =>
         message =
