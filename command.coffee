@@ -15,6 +15,7 @@ MISSING_MANAGER_URL = 'Missing required environment variable: SLURRY_EXCHANGE_MA
 MISSING_APP_OCTOBLU_HOST = 'Missing required environment variable: APP_OCTOBLU_HOST'
 MISSING_SPREADER_REDIS_URI   = 'Missing required environment variable: SLURRY_SPREADER_REDIS_URI'
 MISSING_SPREADER_NAMESPACE   = 'Missing required environment variable: SLURRY_SPREADER_NAMESPACE'
+MISSING_MESHBLU_PRIVATE_KEY   = 'Missing required environment variable: MESHBLU_PRIVATE_KEY'
 
 class Command
   getOptions: =>
@@ -23,6 +24,7 @@ class Command
     throw new Error MISSING_SERVICE_URL if _.isEmpty process.env.SLURRY_EXCHANGE_SERVICE_URL
     throw new Error MISSING_MANAGER_URL if _.isEmpty process.env.SLURRY_EXCHANGE_MANAGER_URL
     throw new Error MISSING_APP_OCTOBLU_HOST if _.isEmpty process.env.APP_OCTOBLU_HOST
+    throw new Error MISSING_MESHBLU_PRIVATE_KEY if _.isEmpty process.env.MESHBLU_PRIVATE_KEY
 
     meshbluConfig   = new MeshbluConfig().toJSON()
     apiStrategy     = new ApiStrategy process.env
@@ -33,6 +35,7 @@ class Command
     @slurrySpreader  = new SlurrySpreader
       redisUri: process.env.SLURRY_SPREADER_REDIS_URI
       namespace: process.env.SLURRY_SPREADER_NAMESPACE
+      privateKey: process.env.MESHBLU_PRIVATE_KEY
 
     jobsPath = path.join __dirname, 'src/jobs'
     configurationsPath = path.join __dirname, 'src/configurations'
