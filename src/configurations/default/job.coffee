@@ -21,6 +21,7 @@ class CalendarStream
   do: ({}, callback) =>
     @bourse.getStreamingEvents distinguishedFolderId: 'calendar', (error, stream) =>
       return callback null, null if error? && error.message == 'ETIMEDOUT'
+      debug "Error for #{username} [#{error.code}]:", error.stack if error?
       return callback error if error?
 
       slurryStream = new SlurryStream
@@ -44,7 +45,7 @@ class CalendarStream
           data: ping: Date.now()
 
         @_throttledMessage message, as: @userDeviceUuid, (error) =>
-          slurryStream.emit 'error', error if error?
+          slurryStream.emit 'delay', error if error?
       , PING_INTERVAL
 
       stream.on 'data', (event) =>
@@ -54,12 +55,11 @@ class CalendarStream
           data: event
 
         @_throttledMessage message, as: @userDeviceUuid, (error) =>
-          return slurryStream.emit 'delay', error if error? && error.code > 499
-          slurryStream.emit 'error', error if error?
+          slurryStream.emit 'delay', error if error?
 
       stream.on 'error', (error) =>
-        @emit 'delay', error if error.message == 'ETIMEDOUT'
-        slurryStream.emit 'error', error
+        # @emit 'delay', error if error.message == 'ETIMEDOUT'
+        slurryStream.emit 'delay', error
 
       return callback null, slurryStream
 
