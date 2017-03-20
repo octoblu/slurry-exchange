@@ -14,14 +14,14 @@ class CalendarStream
     @_throttledMessage = meshbluHttp.message
 
     {hostname, domain} = encrypted.secrets
-    {username, password} = encrypted.secrets.credentials
+    {@username, password} = encrypted.secrets.credentials
 
-    @bourse = new Bourse {hostname, domain, username, password}
+    @bourse = new Bourse {hostname, domain, @username, password}
 
   do: ({}, callback) =>
     @bourse.getStreamingEvents distinguishedFolderId: 'calendar', (error, stream) =>
       return callback null, null if error? && error.message == 'ETIMEDOUT'
-      debug "Error for #{username} [#{error.code}]:", error.stack if error?
+      debug "Error for #{@username} [#{error.code}]:", error.stack if error?
       return callback error if error?
 
       slurryStream = new SlurryStream
