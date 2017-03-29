@@ -1,3 +1,4 @@
+_             = require 'lodash'
 Bourse        = require 'bourse'
 MeshbluHttp   = require 'meshblu-http'
 MeshbluConfig = require 'meshblu-config'
@@ -11,7 +12,7 @@ class CalendarStream
     debug 'constructing stream', @auth.uuid
     meshbluConfig = new MeshbluConfig({@auth}).toJSON()
     meshbluHttp = new MeshbluHttp meshbluConfig
-    @_throttledMessage = meshbluHttp.message
+    @_throttledMessage = _.throttle meshbluHttp.message, 1000
 
     {hostname, domain} = encrypted.secrets
     {@username, password} = encrypted.secrets.credentials
