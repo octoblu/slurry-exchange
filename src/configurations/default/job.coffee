@@ -42,7 +42,7 @@ class CalendarStream
       @_pingInterval = setInterval =>
         message =
           devices: ['*']
-          metadata: {}
+          metadata: { hostname: process.env.HOSTNAME }
           data: ping: Date.now()
 
         @_throttledMessage message, as: @userDeviceUuid, (error) =>
@@ -52,7 +52,7 @@ class CalendarStream
       stream.on 'data', (event) =>
         message =
           devices: ['*']
-          metadata: {}
+          metadata: { hostname: process.env.HOSTNAME }
           data: event
 
         @_throttledMessage message, as: @userDeviceUuid, (error) =>
