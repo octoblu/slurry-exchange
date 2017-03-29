@@ -26,6 +26,10 @@ class CalendarStream
       return callback error if error?
 
       slurryStream = new SlurryStream
+
+      slurryStream.on 'shutdown' =>
+        stream.destroy()
+
       slurryStream.destroy = =>
         debug 'slurryStream.destroy'
         clearInterval @_pingInterval if @_pingInterval?
@@ -46,7 +50,7 @@ class CalendarStream
           data: ping: Date.now()
 
         @_throttledMessage message, as: @userDeviceUuid, (error) =>
-          slurryStream.emit 'delay', error if error?
+          console.error error.stack if error?
       , PING_INTERVAL
 
       stream.on 'data', (event) =>
@@ -56,7 +60,7 @@ class CalendarStream
           data: event
 
         @_throttledMessage message, as: @userDeviceUuid, (error) =>
-          slurryStream.emit 'delay', error if error?
+          console.error error.stack if error?
 
       stream.on 'error', (error) =>
         # @emit 'delay', error if error.message == 'ETIMEDOUT'
