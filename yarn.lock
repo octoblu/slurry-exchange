@@ -2584,9 +2584,9 @@ slurry-core@^1.14.1:
     serve-favicon "^2.3.0"
     shmock "^0.7.2"
 
-slurry-spreader@^2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/slurry-spreader/-/slurry-spreader-2.0.3.tgz#2fa3494de3816e6c93832373c2cc20552dd2ff7e"
+slurry-spreader@2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/slurry-spreader/-/slurry-spreader-2.0.4.tgz#7b4d8a59164b095dbff7f5aaf936b1295c4cc61e"
   dependencies:
     "@octoblu/redis-ns" "^1.3.1"
     async "^2.0.1"
