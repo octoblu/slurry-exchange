@@ -27,7 +27,7 @@ class CalendarStream
 
       slurryStream = new SlurryStream
 
-      slurryStream.on 'shutdown' =>
+      slurryStream.on 'shutdown', =>
         debug 'on shutdown', @userDeviceUuid
         stream.destroy()
 
