@@ -28,18 +28,21 @@ class CalendarStream
       slurryStream = new SlurryStream
 
       slurryStream.on 'shutdown' =>
+        debug 'on shutdown', @userDeviceUuid
         stream.destroy()
 
       slurryStream.destroy = =>
-        debug 'slurryStream.destroy'
+        debug 'slurryStream.destroy', @userDeviceUuid
         clearInterval @_pingInterval if @_pingInterval?
         stream.destroy()
 
       stream.on 'end', =>
+        debug 'on end', @userDeviceUuid
         clearInterval @_pingInterval if @_pingInterval?
         slurryStream.emit 'close'
 
       stream.on 'close', =>
+        debug 'on close', @userDeviceUuid
         clearInterval @_pingInterval if @_pingInterval?
         slurryStream.emit 'close'
 
@@ -54,6 +57,7 @@ class CalendarStream
       , PING_INTERVAL
 
       stream.on 'data', (event) =>
+        debug 'on data', @userDeviceUuid
         message =
           devices: ['*']
           metadata: { hostname: process.env.HOSTNAME }
@@ -63,6 +67,7 @@ class CalendarStream
           console.error error.stack if error?
 
       stream.on 'error', (error) =>
+        debug 'on error', @userDeviceUuid, error.stack
         # @emit 'delay', error if error.message == 'ETIMEDOUT'
         slurryStream.emit 'delay', error
 
