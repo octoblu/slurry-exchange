@@ -52,16 +52,21 @@ class CalendarStream
 
       stream.on 'end', =>
         debug 'on end', @userDeviceUuid
+        @shouldBeDead = 'end'
         clearInterval @_pingInterval if @_pingInterval?
         slurryStream.emit 'close'
 
       stream.on 'close', =>
         debug 'on close', @userDeviceUuid
+        @shouldBeDead = 'close'
         clearInterval @_pingInterval if @_pingInterval?
         slurryStream.emit 'close'
 
       stream.on 'data', (event) =>
         debug 'on data', @userDeviceUuid
+
+        console.error "#{@userDeviceUuid} should be dead: #{@shouldBeDead}" if @shouldBeDead?
+
         message =
           devices: ['*']
           metadata: { hostname: process.env.HOSTNAME }
