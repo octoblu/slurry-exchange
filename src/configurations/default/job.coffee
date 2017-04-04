@@ -9,7 +9,7 @@ PING_INTERVAL = 6 * 60 * 60 * 1000 # every 6 hours
 
 class CalendarStream
   constructor: ({encrypted, @auth, @userDeviceUuid}) ->
-    debug 'constructing stream', @auth.uuid
+    debug 'constructing stream', @auth.uuid, encrypted
     meshbluConfig = new MeshbluConfig({@auth}).toJSON()
     meshbluHttp = new MeshbluHttp meshbluConfig
     @_throttledMessage = _.throttle meshbluHttp.message, 1000
@@ -25,10 +25,21 @@ class CalendarStream
       debug "Error for #{@username} [#{error.code}]:", error.stack if error?
       return callback error if error?
 
+      @_pingInterval = setInterval =>
+        message =
+          devices: ['*']
+          metadata: { hostname: process.env.HOSTNAME }
+          data: ping: Date.now()
+
+        @_throttledMessage message, as: @userDeviceUuid, (error) =>
+          console.error error.stack if error?
+      , PING_INTERVAL
+
       slurryStream = new SlurryStream
 
       slurryStream.on 'shutdown', =>
         debug 'on shutdown', @userDeviceUuid
+        clearInterval @_pingInterval if @_pingInterval?
         stream.destroy()
 
       slurryStream.destroy = =>
@@ -45,16 +56,6 @@ class CalendarStream
         debug 'on close', @userDeviceUuid
         clearInterval @_pingInterval if @_pingInterval?
         slurryStream.emit 'close'
-
-      @_pingInterval = setInterval =>
-        message =
-          devices: ['*']
-          metadata: { hostname: process.env.HOSTNAME }
-          data: ping: Date.now()
-
-        @_throttledMessage message, as: @userDeviceUuid, (error) =>
-          console.error error.stack if error?
-      , PING_INTERVAL
 
       stream.on 'data', (event) =>
         debug 'on data', @userDeviceUuid
