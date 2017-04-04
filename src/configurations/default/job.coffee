@@ -9,7 +9,7 @@ PING_INTERVAL = 6 * 60 * 60 * 1000 # every 6 hours
 
 class CalendarStream
   constructor: ({encrypted, @auth, @userDeviceUuid}) ->
-    debug 'constructing stream', @auth.uuid, encrypted
+    debug 'constructing stream', @auth.uuid, encrypted?.id
     meshbluConfig = new MeshbluConfig({@auth}).toJSON()
     meshbluHttp = new MeshbluHttp meshbluConfig
     @_throttledMessage = _.throttle meshbluHttp.message, 1000
