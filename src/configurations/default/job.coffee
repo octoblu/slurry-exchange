@@ -21,7 +21,10 @@ class CalendarStream
 
   do: ({}, callback) =>
     @bourse.getStreamingEvents distinguishedFolderId: 'calendar', (error, stream) =>
-      return callback null, null if error? && error.message == 'ETIMEDOUT'
+      if error? && error.message == 'ETIMEDOUT'
+        debug 'ETIMEDOUT', @userDeviceUuid
+        return callback null, null
+
       debug "Error for #{@username} [#{error.code}]:", error.stack if error?
       return callback error if error?
 
