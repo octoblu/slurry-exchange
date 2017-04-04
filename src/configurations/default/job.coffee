@@ -42,11 +42,13 @@ class CalendarStream
 
       slurryStream.on 'shutdown', =>
         debug 'on shutdown', @userDeviceUuid
+        @shouldBeDead = 'shutdown'
         clearInterval @_pingInterval if @_pingInterval?
         stream.destroy()
 
       slurryStream.destroy = =>
         debug 'slurryStream.destroy', @userDeviceUuid
+        @shouldBeDead = 'destroy'
         clearInterval @_pingInterval if @_pingInterval?
         stream.destroy()
 
