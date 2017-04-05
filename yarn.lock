@@ -262,9 +262,9 @@ boom@2.x.x:
   dependencies:
     hoek "2.x.x"
 
-bourse@^10.8.1:
-  version "10.8.1"
-  resolved "https://registry.yarnpkg.com/bourse/-/bourse-10.8.1.tgz#9c3f37d5c125da6884d05a11740b5493bc89d3ce"
+bourse@^10.8.2:
+  version "10.8.2"
+  resolved "https://registry.yarnpkg.com/bourse/-/bourse-10.8.2.tgz#7b6fcf6b5cf1bc4b3422c86e1d7b9f0a1d9109c1"
   dependencies:
     async "^2.0.1"
     cheerio "^0.22.0"
@@ -633,11 +633,7 @@ debug@2.6.1:
   dependencies:
     ms "0.7.2"
 
-"debug@>= 0.7.3 < 1":
-  version "0.8.1"
-  resolved "https://registry.yarnpkg.com/debug/-/debug-0.8.1.tgz#20ff4d26f5e422cb68a1bacbbb61039ad8c1c130"
-
-debug@~0.7.4:
+"debug@>= 0.7.3 < 1", debug@~0.7.4:
   version "0.7.4"
   resolved "https://registry.yarnpkg.com/debug/-/debug-0.7.4.tgz#06e1ea8082c2cb14e39806e22e2f6f757f92af39"
 
