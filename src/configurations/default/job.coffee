@@ -30,7 +30,7 @@ class CalendarStream
   do: ({}, callback) =>
     @bourse.authenticate (error, authenticated) =>
       return callback error if error?
-      return callback @_userError(401, 'User is unauthenticated') unless authenticated
+      return callback @_userError(401, "User #{@username} is unauthenticated") unless authenticated
 
       @bourse.getStreamingEvents distinguishedFolderId: 'calendar', (error, stream) =>
         debug "Error for #{@username} [#{error.code}]:", error.stack if error?
