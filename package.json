@@ -1,6 +1,6 @@
 {
   "name": "slurry-exchange",
-  "version": "5.2.30",
+  "version": "5.3.0",
   "description": "Put some description here",
   "keywords": [],
   "homepage": "https://github.com/octoblu/exchange",
@@ -62,8 +62,8 @@
     "request": "^2.81.0",
     "shmock": "^0.8.1",
     "slurry-core": "^1.14.1",
-    "slurry-spreader": "^2.1.2",
     "uuid": "^3.0.1",
+    "slurry-spreader": "^2.2.0",
     "xml-nodes": "^0.1.5",
     "xml-objects": "^1.0.1",
     "xml2js": "^0.4.17"
