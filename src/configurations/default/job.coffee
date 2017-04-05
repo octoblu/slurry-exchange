@@ -28,59 +28,59 @@ class CalendarStream
     }
 
   do: ({}, callback) =>
-    @bourse.getStreamingEvents distinguishedFolderId: 'calendar', (error, stream) =>
-      if error? && error.message == 'ETIMEDOUT'
-        debug 'ETIMEDOUT', @userDeviceUuid
-        return callback null, null
-
-      debug "Error for #{@username} [#{error.code}]:", error.stack if error?
+    @bourse.authenticate (error, authenticated) =>
       return callback error if error?
+      return callback @_userError(401, 'User is unauthenticated') unless authenticated
 
-      @_pingInterval = setInterval =>
-        message = @_getMessage ping: Date.now()
-        @_throttledMessage message, as: @userDeviceUuid, (error) =>
-          console.error error.stack if error?
-      , PING_INTERVAL
+      @bourse.getStreamingEvents distinguishedFolderId: 'calendar', (error, stream) =>
+        debug "Error for #{@username} [#{error.code}]:", error.stack if error?
+        return callback error if error?
 
-      slurryStream = new SlurryStream
+        @_pingInterval = setInterval =>
+          message = @_getMessage ping: Date.now()
+          @_throttledMessage message, as: @userDeviceUuid, (error) =>
+            console.error error.stack if error?
+        , PING_INTERVAL
 
-      slurryStream.on 'shutdown', =>
-        debug 'on shutdown', @userDeviceUuid
-        @shouldBeDead = 'shutdown'
-        clearInterval @_pingInterval if @_pingInterval?
-        stream.destroy()
+        slurryStream = new SlurryStream
 
-      slurryStream.destroy = =>
-        debug 'slurryStream.destroy', @userDeviceUuid
-        @shouldBeDead = 'destroy'
-        clearInterval @_pingInterval if @_pingInterval?
-        stream.destroy()
+        slurryStream.on 'shutdown', =>
+          debug 'on shutdown', @userDeviceUuid
+          @shouldBeDead = 'shutdown'
+          clearInterval @_pingInterval if @_pingInterval?
+          stream.destroy()
 
-      stream.on 'end', =>
-        debug 'on end', @userDeviceUuid
-        @shouldBeDead = 'end'
-        clearInterval @_pingInterval if @_pingInterval?
-        slurryStream.emit 'close'
+        slurryStream.destroy = =>
+          debug 'slurryStream.destroy', @userDeviceUuid
+          @shouldBeDead = 'destroy'
+          clearInterval @_pingInterval if @_pingInterval?
+          stream.destroy()
 
-      stream.on 'close', =>
-        debug 'on close', @userDeviceUuid
-        @shouldBeDead = 'close'
-        clearInterval @_pingInterval if @_pingInterval?
-        slurryStream.emit 'close'
+        stream.on 'end', =>
+          debug 'on end', @userDeviceUuid
+          @shouldBeDead = 'end'
+          clearInterval @_pingInterval if @_pingInterval?
+          slurryStream.emit 'close'
 
-      stream.on 'data', (event) =>
-        debug 'on data', @userDeviceUuid
-        console.error "#{@userDeviceUuid} should be dead: #{@shouldBeDead}" if @shouldBeDead?
-        message = @_getMessage event
-        @_throttledMessage message, as: @userDeviceUuid, (error) =>
-          console.error error.stack if error?
+        stream.on 'close', =>
+          debug 'on close', @userDeviceUuid
+          @shouldBeDead = 'close'
+          clearInterval @_pingInterval if @_pingInterval?
+          slurryStream.emit 'close'
 
-      stream.on 'error', (error) =>
-        debug 'on error', @userDeviceUuid, error.stack
-        # @emit 'delay', error if error.message == 'ETIMEDOUT'
-        slurryStream.emit 'delay', error
+        stream.on 'data', (event) =>
+          debug 'on data', @userDeviceUuid
+          console.error "#{@userDeviceUuid} should be dead: #{@shouldBeDead}" if @shouldBeDead?
+          message = @_getMessage event
+          @_throttledMessage message, as: @userDeviceUuid, (error) =>
+            console.error error.stack if error?
 
-      return callback null, slurryStream
+        stream.on 'error', (error) =>
+          debug 'on error', @userDeviceUuid, error.stack
+          # @emit 'delay', error if error.message == 'ETIMEDOUT'
+          slurryStream.emit 'delay', error
+
+        return callback null, slurryStream
 
   _userError: (code, message) =>
     error = new Error message
