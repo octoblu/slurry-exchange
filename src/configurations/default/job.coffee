@@ -1,5 +1,6 @@
 _             = require 'lodash'
 Bourse        = require 'bourse'
+UUID          = require 'uuid'
 MeshbluHttp   = require 'meshblu-http'
 MeshbluConfig = require 'meshblu-config'
 SlurryStream  = require 'slurry-core/slurry-stream'
@@ -16,8 +17,15 @@ class CalendarStream
 
     {hostname, domain} = encrypted.secrets
     {@username, password} = encrypted.secrets.credentials
-
+    @id = UUID.v4()
     @bourse = new Bourse {hostname, domain, @username, password}
+
+  _getMessage: (event) =>
+    return {
+      devices: ['*']
+      metadata: { hostname: process.env.HOSTNAME, @id }
+      data: event
+    }
 
   do: ({}, callback) =>
     @bourse.getStreamingEvents distinguishedFolderId: 'calendar', (error, stream) =>
@@ -29,11 +37,7 @@ class CalendarStream
       return callback error if error?
 
       @_pingInterval = setInterval =>
-        message =
-          devices: ['*']
-          metadata: { hostname: process.env.HOSTNAME }
-          data: ping: Date.now()
-
+        message = @_getMessage ping: Date.now()
         @_throttledMessage message, as: @userDeviceUuid, (error) =>
           console.error error.stack if error?
       , PING_INTERVAL
@@ -66,14 +70,8 @@ class CalendarStream
 
       stream.on 'data', (event) =>
         debug 'on data', @userDeviceUuid
-
         console.error "#{@userDeviceUuid} should be dead: #{@shouldBeDead}" if @shouldBeDead?
-
-        message =
-          devices: ['*']
-          metadata: { hostname: process.env.HOSTNAME }
-          data: event
-
+        message = @_getMessage event
         @_throttledMessage message, as: @userDeviceUuid, (error) =>
           console.error error.stack if error?
 
