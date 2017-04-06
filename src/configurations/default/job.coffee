@@ -33,8 +33,10 @@ class CalendarStream
       return callback @_userError(401, "User #{@username} is unauthenticated") unless authenticated
 
       @bourse.getStreamingEvents distinguishedFolderId: 'calendar', (error, stream) =>
-        debug "Error for #{@username} [#{error.code}]:", error.stack if error?
-        return callback error if error?
+
+        if error?
+          debug "Error for #{@username} [#{error.code}]:", error.message
+          return callback error
 
         @_pingInterval = setInterval =>
           message = @_getMessage ping: Date.now()
