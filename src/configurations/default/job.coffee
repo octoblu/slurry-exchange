@@ -35,7 +35,7 @@ class CalendarStream
       @bourse.getStreamingEvents distinguishedFolderId: 'calendar', (error, stream) =>
 
         if error?
-          debug "Error for #{@username} [#{error.code}]:", error.message
+          debug "Error for #{@username} [#{error.message}]:", error.message
           return callback error
 
         @_pingInterval = setInterval =>
@@ -45,12 +45,6 @@ class CalendarStream
         , PING_INTERVAL
 
         slurryStream = new SlurryStream
-
-        slurryStream.on 'shutdown', =>
-          debug 'on shutdown', @userDeviceUuid
-          @shouldBeDead = 'shutdown'
-          clearInterval @_pingInterval if @_pingInterval?
-          stream.destroy()
 
         slurryStream.destroy = =>
           debug 'slurryStream.destroy', @userDeviceUuid
