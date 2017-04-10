@@ -262,9 +262,9 @@ boom@2.x.x:
   dependencies:
     hoek "2.x.x"
 
-bourse@^10.8.2:
-  version "10.8.2"
-  resolved "https://registry.yarnpkg.com/bourse/-/bourse-10.8.2.tgz#7b6fcf6b5cf1bc4b3422c86e1d7b9f0a1d9109c1"
+bourse@^10.9.0:
+  version "10.9.0"
+  resolved "https://registry.yarnpkg.com/bourse/-/bourse-10.9.0.tgz#fea379124db2acd50da9e6a48898d6e45f2e3753"
   dependencies:
     async "^2.0.1"
     cheerio "^0.22.0"
@@ -423,9 +423,13 @@ code-point-at@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
 
-coffee-script@^1.10.0, coffee-script@^1.11.1, coffee-script@^1.12.2, coffee-script@^1.12.4, coffee-script@^1.9.0, coffee-script@^1.9.1, coffee-script@^1.9.2:
+coffee-script@^1.10.0, coffee-script@^1.12.2, coffee-script@^1.12.4, coffee-script@^1.9.0, coffee-script@^1.9.1, coffee-script@^1.9.2:
   version "1.12.4"
   resolved "https://registry.yarnpkg.com/coffee-script/-/coffee-script-1.12.4.tgz#fe1bced97fe1fb3927b998f2b45616e0658be1ff"
+
+coffee-script@^1.11.1, coffee-script@^1.12.5:
+  version "1.12.5"
+  resolved "https://registry.yarnpkg.com/coffee-script/-/coffee-script-1.12.5.tgz#809f4585419112bbfe46a073ad7543af18c27346"
 
 combined-stream@^1.0.5, combined-stream@~1.0.5:
   version "1.0.5"
