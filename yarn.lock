@@ -262,9 +262,9 @@ boom@2.x.x:
   dependencies:
     hoek "2.x.x"
 
-bourse@^10.9.2:
-  version "10.9.2"
-  resolved "https://registry.yarnpkg.com/bourse/-/bourse-10.9.2.tgz#9eb07c9cddd99c213fa3ca7db7fbba94b7507290"
+bourse@^10.10.1:
+  version "10.10.1"
+  resolved "https://registry.yarnpkg.com/bourse/-/bourse-10.10.1.tgz#31f5dde9d5ff000f40fd950121e25f3e814ae815"
   dependencies:
     async "^2.0.1"
     cheerio "^0.22.0"
@@ -2575,9 +2575,9 @@ slide@^1.1.5:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/slide/-/slide-1.1.6.tgz#56eb027d65b4d2dce6cb2e2d32c4d4afc9e1d707"
 
-slurry-core@^1.14.3:
-  version "1.14.3"
-  resolved "https://registry.yarnpkg.com/slurry-core/-/slurry-core-1.14.3.tgz#71611ee507fc1f85080373b1a67647da5bab329d"
+slurry-core@^1.15.0:
+  version "1.15.0"
+  resolved "https://registry.yarnpkg.com/slurry-core/-/slurry-core-1.15.0.tgz#6656374ef68757529c85e7a68938077e62f1e4ba"
   dependencies:
     body-parser "^1.14.1"
     coffee-script "^1.10.0"
@@ -2606,9 +2606,9 @@ slurry-core@^1.14.3:
     serve-favicon "^2.3.0"
     shmock "^0.7.2"
 
-slurry-spreader@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/slurry-spreader/-/slurry-spreader-2.2.0.tgz#723139a619e13664b1b1e2e3372ebc00f4f7fb98"
+slurry-spreader@^2.3.3:
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/slurry-spreader/-/slurry-spreader-2.3.3.tgz#96d8e73e37eb6dcdf9080017a1e1f836b80a81f2"
   dependencies:
     "@octoblu/redis-ns" "^1.3.1"
     async "^2.0.1"
@@ -2617,6 +2617,7 @@ slurry-spreader@^2.2.0:
     ioredis "^2.3.0"
     lodash "^4.15.0"
     meshblu-encryption "^2.0.1"
+    moment "^2.18.1"
     redlock "^2.0.0"
     uuid "^2.0.2"
   optionalDependencies:
