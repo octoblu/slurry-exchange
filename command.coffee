@@ -1,4 +1,3 @@
-async            = require 'async'
 _                = require 'lodash'
 MeshbluConfig    = require 'meshblu-config'
 path             = require 'path'
@@ -7,15 +6,16 @@ OctobluStrategy  = require 'slurry-core/octoblu-strategy'
 MessageHandler   = require 'slurry-core/message-handler'
 ConfigureHandler = require 'slurry-core/configure-handler'
 SlurrySpreader   = require 'slurry-spreader'
+SigtermHandler   = require 'sigterm-handler'
 
 ApiStrategy      = require './src/api-strategy'
 
-MISSING_SERVICE_URL = 'Missing required environment variable: SLURRY_EXCHANGE_SERVICE_URL'
-MISSING_MANAGER_URL = 'Missing required environment variable: SLURRY_EXCHANGE_MANAGER_URL'
-MISSING_APP_OCTOBLU_HOST = 'Missing required environment variable: APP_OCTOBLU_HOST'
-MISSING_SPREADER_REDIS_URI   = 'Missing required environment variable: SLURRY_SPREADER_REDIS_URI'
-MISSING_SPREADER_NAMESPACE   = 'Missing required environment variable: SLURRY_SPREADER_NAMESPACE'
-MISSING_MESHBLU_PRIVATE_KEY   = 'Missing required environment variable: MESHBLU_PRIVATE_KEY'
+MISSING_SERVICE_URL         = 'Missing required environment variable: SLURRY_EXCHANGE_SERVICE_URL'
+MISSING_MANAGER_URL         = 'Missing required environment variable: SLURRY_EXCHANGE_MANAGER_URL'
+MISSING_APP_OCTOBLU_HOST    = 'Missing required environment variable: APP_OCTOBLU_HOST'
+MISSING_SPREADER_REDIS_URI  = 'Missing required environment variable: SLURRY_SPREADER_REDIS_URI'
+MISSING_SPREADER_NAMESPACE  = 'Missing required environment variable: SLURRY_SPREADER_NAMESPACE'
+MISSING_MESHBLU_PRIVATE_KEY = 'Missing required environment variable: MESHBLU_PRIVATE_KEY'
 
 class Command
   getOptions: =>
@@ -66,18 +66,9 @@ class Command
         {address,port} = server.address()
         console.log "Server listening on #{address}:#{port}"
 
-    process.on 'SIGTERM', =>
-      console.log 'SIGTERM caught, exiting'
-      @gracefulExit(server)
-
-    process.on 'SIGINT', =>
-      console.log 'SIGINT caught, exiting'
-      @gracefulExit(server)
-
-  gracefulExit: (server) =>
-    return process.exit 0 unless server?.stop?
-    async.parallel [@slurrySpreader.stop, async.timeout(server.stop, 1000)], =>
-      process.exit 0
+    sigtermHandler = new SigtermHandler { events: ['SIGTERM', 'SIGINT'] }
+    sigtermHandler.register @slurrySpreader?.stop
+    sigtermHandler.register server?.stop
 
 command = new Command()
 command.run()

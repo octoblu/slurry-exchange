@@ -1,6 +1,6 @@
 {
   "name": "slurry-exchange",
-  "version": "5.5.3",
+  "version": "5.5.4",
   "description": "Put some description here",
   "keywords": [],
   "homepage": "https://github.com/octoblu/exchange",
@@ -61,6 +61,7 @@
     "passport-octoblu": "^3.0.1",
     "request": "^2.81.0",
     "shmock": "^0.8.1",
+    "sigterm-handler": "^2.0.0",
     "slurry-core": "^1.14.3",
     "slurry-spreader": "^2.2.0",
     "uuid": "^3.0.1",
