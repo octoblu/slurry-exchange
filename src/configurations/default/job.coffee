@@ -30,7 +30,7 @@ class CalendarStream
   do: ({}, callback) =>
     @bourse.authenticate (error, authenticated) =>
       return callback error if error?
-      return callback @_userError(401, "User #{@username} is unauthenticated") unless authenticated
+      return callback @_unrecoverableError(401, "User #{@username} is unauthenticated") unless authenticated
 
       @bourse.getStreamingEvents distinguishedFolderId: 'calendar', (error, stream) =>
 
@@ -73,10 +73,15 @@ class CalendarStream
 
         stream.on 'error', (error) =>
           debug 'on error', @userDeviceUuid, error.stack
-          # @emit 'delay', error if error.message == 'ETIMEDOUT'
+          error.shouldRetry = true
           slurryStream.emit 'delay', error
 
         return callback null, slurryStream
+
+  _unrecoverableError: (code, message) =>
+    error = @_userError code, message
+    error.shouldRetry = false
+    error
 
   _userError: (code, message) =>
     error = new Error message
