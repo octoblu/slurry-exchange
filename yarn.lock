@@ -262,9 +262,9 @@ boom@2.x.x:
   dependencies:
     hoek "2.x.x"
 
-bourse@^10.10.2:
-  version "10.10.2"
-  resolved "https://registry.yarnpkg.com/bourse/-/bourse-10.10.2.tgz#dcf1972c3d8067f51db969b75c0987f2d665909c"
+bourse@^10.10.3:
+  version "10.10.3"
+  resolved "https://registry.yarnpkg.com/bourse/-/bourse-10.10.3.tgz#f34c81d2d3ebfb0b0774b13637e091f2052e2dd0"
   dependencies:
     async "^2.0.1"
     cheerio "^0.22.0"
