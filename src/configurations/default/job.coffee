@@ -6,8 +6,8 @@ MeshbluConfig = require 'meshblu-config'
 SlurryStream  = require 'slurry-core/slurry-stream'
 debug         = require('debug')('slurry-exchange:default:job')
 
-# PING_INTERVAL = 6 * 60 * 60 * 1000 # every 6 hours
-PING_INTERVAL = 60 * 1000 # every 1 minute
+PING_INTERVAL = 60 * 60 * 1000 # every 1 hours
+# PING_INTERVAL = 60 * 1000 # every 1 minute
 
 class CalendarStream
   constructor: ({encrypted, @auth, @userDeviceUuid}) ->
