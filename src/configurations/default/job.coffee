@@ -6,7 +6,7 @@ MeshbluConfig = require 'meshblu-config'
 SlurryStream  = require 'slurry-core/slurry-stream'
 debug         = require('debug')('slurry-exchange:default:job')
 
-PING_INTERVAL = 60 * 60 * 1000 # every 1 hours
+# PING_INTERVAL = 60 * 60 * 1000 # every 1 hours
 # PING_INTERVAL = 60 * 1000 # every 1 minute
 
 class CalendarStream
@@ -39,11 +39,9 @@ class CalendarStream
           debug "Error for #{@username} [#{error.message}]:", error.message
           return callback error
 
-        @_pingInterval = setInterval =>
-          message = @_getMessage ping: Date.now()
-          @_throttledMessage message, as: @userDeviceUuid, (error) =>
-            console.error error.stack if error?
-        , PING_INTERVAL
+        message = @_getMessage ping: Date.now()
+        @_throttledMessage message, as: @userDeviceUuid, (error) =>
+          console.error error.stack if error?
 
         slurryStream = new SlurryStream
 
