@@ -55,14 +55,12 @@ class CalendarStream
         stream.on 'end', =>
           debug 'on end', @userDeviceUuid
           @shouldBeDead = 'end'
-          error.shouldRetry = true
           clearInterval @_pingInterval if @_pingInterval?
           slurryStream.emit 'close'
 
         stream.on 'close', =>
           debug 'on close', @userDeviceUuid
           @shouldBeDead = 'close'
-          error.shouldRetry = true
           clearInterval @_pingInterval if @_pingInterval?
           slurryStream.emit 'close'
 
