@@ -31,14 +31,14 @@ class CalendarStream
   do: ({}, callback) =>
     @bourse.authenticate (error, authenticated) =>
       if error?
-        error.shouldRetry = true if error.code == 'ETIMEDOUT'
+        error.shouldRetry = true
         return callback error
       unless authenticated
         return callback @_unrecoverableError(401, "User #{@username} is unauthenticated")
 
       @bourse.getStreamingEvents distinguishedFolderId: 'calendar', (error, stream) =>
         if error?
-          error.shouldRetry = true if error.code == 'ETIMEDOUT'
+          error.shouldRetry = true
           debug "Error for #{@username} [#{error.message}]:", error.message
           return callback error
         @_pingInterval = setInterval @_ping, PING_INTERVAL
