@@ -128,6 +128,12 @@ async@^2.0.1:
   dependencies:
     lodash "^4.14.0"
 
+async@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/async/-/async-2.4.0.tgz#4990200f18ea5b837c2cc4f8c031a6985c385611"
+  dependencies:
+    lodash "^4.14.0"
+
 asynckit@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
@@ -262,9 +268,9 @@ boom@2.x.x:
   dependencies:
     hoek "2.x.x"
 
-bourse@^10.10.3:
-  version "10.10.3"
-  resolved "https://registry.yarnpkg.com/bourse/-/bourse-10.10.3.tgz#f34c81d2d3ebfb0b0774b13637e091f2052e2dd0"
+bourse@^10.10.4:
+  version "10.10.4"
+  resolved "https://registry.yarnpkg.com/bourse/-/bourse-10.10.4.tgz#93a3947762d451ee65987794dff1a4799c583dcd"
   dependencies:
     async "^2.0.1"
     cheerio "^0.22.0"
