@@ -1,6 +1,6 @@
 {
   "name": "slurry-exchange",
-  "version": "5.6.17",
+  "version": "5.6.18",
   "description": "Put some description here",
   "keywords": [],
   "homepage": "https://github.com/octoblu/exchange",
@@ -29,11 +29,11 @@
     "mocha-istanbul": "^0.3.0",
     "mocha-multi": "^0.11.0",
     "mocha-osx-reporter": "^0.1.2",
-    "nyc": "^10.2.0",
+    "nyc": "^10.3.0",
     "passport-strategy": "^1.0.0",
     "server-destroy": "^1.0.1",
-    "sinon": "^2.1.0",
-    "sinon-chai": "^2.9.0"
+    "sinon": "^2.2.0",
+    "sinon-chai": "^2.10.0"
   },
   "dependencies": {
     "async": "^2.4.0",
@@ -43,7 +43,7 @@
     "cookie-parser": "^1.4.1",
     "cookie-session": "^2.0.0-beta.1",
     "cors": "^2.8.3",
-    "debug": "^2.6.4",
+    "debug": "^2.6.6",
     "errorhandler": "^1.4.2",
     "express": "^4.15.2",
     "express-meshblu-auth": "^9.1.0",
@@ -64,7 +64,7 @@
     "shmock": "^0.8.1",
     "sigterm-handler": "^2.0.0",
     "slurry-core": "^4.0.0",
-    "slurry-spreader": "^2.3.3",
+    "slurry-spreader": "^2.4.0",
     "uuid": "^3.0.1",
     "xml-nodes": "^0.1.5",
     "xml-objects": "^1.0.1",
