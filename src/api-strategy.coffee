@@ -1,8 +1,8 @@
-_ = require 'lodash'
+_                = require 'lodash'
 PassportStrategy = require 'passport-strategy'
-url = require 'url'
-# Exchange = require './services/exchange-service'
-Bourse = require 'bourse'
+url              = require 'url'
+Bourse           = require 'bourse'
+async            = require 'async'
 
 class ExchangeStrategy extends PassportStrategy
   constructor: (env) ->
@@ -27,7 +27,7 @@ class ExchangeStrategy extends PassportStrategy
     {bearerToken} = req.meshbluAuth
     {hostname, domain, username, password} = req.body
     return @redirect @authorizationUrl({bearerToken}) unless password?
-    @getUserFromExchange {hostname, domain, username, password}, (error, user) =>
+    @_retry @getUserFromExchange, {hostname, domain, username, password}, (error, user) =>
       return @fail 401 if error? && error.code < 500
       return @error error if error?
       return @fail 404 unless user?
@@ -70,6 +70,9 @@ class ExchangeStrategy extends PassportStrategy
 
   schemaUrl: ->
     @_schemaUrl
+
+  _retry: (fn, options, callback) =>
+    async.retry 5, async.apply(fn, options), callback
 
   _userError: (code, message) =>
     error = new Error message
