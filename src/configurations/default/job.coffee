@@ -41,6 +41,8 @@ class CalendarStream
           error.shouldRetry = true
           debug "Error for #{@username} [#{error.message}]:", error.message
           return callback error
+
+        setTimeout (=> slurryStream.emit('close')), 29 * 1000
         @_pingInterval = setInterval @_ping, PING_INTERVAL
         @_ping()
 
