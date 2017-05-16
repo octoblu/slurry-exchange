@@ -2551,9 +2551,9 @@ slide@^1.1.5:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/slide/-/slide-1.1.6.tgz#56eb027d65b4d2dce6cb2e2d32c4d4afc9e1d707"
 
-slurry-core@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/slurry-core/-/slurry-core-4.0.0.tgz#67a95c2b932803885518440c7e39d29557583951"
+slurry-core@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/slurry-core/-/slurry-core-4.0.1.tgz#e7420ca0105cb1f0fbc57aa77f1b71b086423d12"
   dependencies:
     body-parser "^1.17.1"
     coffee-script "^1.12.5"
