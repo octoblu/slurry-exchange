@@ -6,8 +6,7 @@ MeshbluConfig = require 'meshblu-config'
 SlurryStream  = require 'slurry-core/slurry-stream'
 debug         = require('debug')('slurry-exchange:default:job')
 
-PING_INTERVAL = 60 * 60 * 1000 # every 1 hours
-# PING_INTERVAL = 60 * 1000 # every 1 minute
+RECONNECT_INTERVAL = 15 * 60 * 1000 # every 15 minutes, half the ConnectTimeout
 
 class CalendarStream
   constructor: ({encrypted, @auth, @userDeviceUuid}) ->
@@ -28,7 +27,14 @@ class CalendarStream
       data: event
     }
 
-  do: ({}, callback) =>
+  do: (options, callback) =>
+    try
+      @_do options, callback
+    catch error
+      console.error '_do try/catch error: ', error
+      return callback error
+
+  _do: ({}, callback) =>
     @bourse.authenticate (error, authenticated) =>
       if error?
         error.shouldRetry = true
@@ -42,8 +48,7 @@ class CalendarStream
           debug "Error for #{@username} [#{error.message}]:", error.message
           return callback error
 
-        setTimeout (=> slurryStream.emit('close')), 29 * 60 * 1000
-        @_pingInterval = setInterval @_ping, PING_INTERVAL
+        setTimeout (=> slurryStream.emit('close')), RECONNECT_INTERVAL
         @_ping()
 
         slurryStream = new SlurryStream
@@ -51,19 +56,16 @@ class CalendarStream
         slurryStream.destroy = =>
           debug 'slurryStream.destroy', @userDeviceUuid
           @shouldBeDead = 'destroy'
-          clearInterval @_pingInterval if @_pingInterval?
           stream.destroy()
 
         stream.on 'end', =>
           debug 'on end', @userDeviceUuid
           @shouldBeDead = 'end'
-          clearInterval @_pingInterval if @_pingInterval?
           slurryStream.emit 'close'
 
         stream.on 'close', =>
           debug 'on close', @userDeviceUuid
           @shouldBeDead = 'close'
-          clearInterval @_pingInterval if @_pingInterval?
           slurryStream.emit 'close'
 
         stream.on 'data', (event) =>
