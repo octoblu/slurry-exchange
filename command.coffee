@@ -59,10 +59,10 @@ class Command
   run: =>
     server = new Slurry @getOptions()
     @slurrySpreader.start (error) =>
-      console.error "SlurrySpreader Error", error.stack
+      console.error "SlurrySpreader Error", error.stack if error?
       throw error if error?
       server.run (error) =>
-        console.error "Server.run Error", error.stack
+        console.error "Server.run Error", error.stack if error?
         throw error if error?
 
         {address,port} = server.address()
