@@ -28,13 +28,6 @@ class CalendarStream
     }
 
   do: (options, callback) =>
-    try
-      @_do options, callback
-    catch error
-      console.error '_do try/catch error: ', error
-      return callback error
-
-  _do: ({}, callback) =>
     @bourse.authenticate (error, authenticated) =>
       if error?
         error.shouldRetry = true
