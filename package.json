@@ -1,6 +1,6 @@
 {
   "name": "slurry-exchange",
-  "version": "5.7.9",
+  "version": "5.7.10",
   "description": "Put some description here",
   "keywords": [],
   "homepage": "https://github.com/octoblu/exchange",
@@ -38,7 +38,7 @@
   "dependencies": {
     "async": "^2.4.1",
     "body-parser": "^1.17.2",
-    "bourse": "^11.1.1",
+    "bourse": "^11.1.2",
     "coffee-script": "^1.12.6",
     "cookie-parser": "^1.4.1",
     "cookie-session": "^2.0.0-beta.1",
