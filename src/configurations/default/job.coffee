@@ -66,7 +66,7 @@ class CalendarStream
           console.error "#{@userDeviceUuid} should be dead: #{@shouldBeDead}" if @shouldBeDead?
           message = @_getMessage event
           @_throttledMessage message, as: @userDeviceUuid, (error) =>
-            console.error error.stack if error?
+            console.error 'do._throttledMessage', error.stack if error?
 
         stream.on 'error', (error) =>
           debug 'on error', @userDeviceUuid, error.stack
@@ -78,7 +78,7 @@ class CalendarStream
   _ping: =>
     message = @_getMessage ping: Date.now()
     @_throttledMessage message, as: @userDeviceUuid, (error) =>
-      console.error error.stack if error?
+      console.error '_ping._throttledMessage', error.stack if error?
 
   _unrecoverableError: (code, message) =>
     error = @_userError code, message
